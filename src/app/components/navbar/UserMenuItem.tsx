@@ -1,17 +1,18 @@
 "use client";
 
-interface MenuItemProps {
+interface UserMenuItemProps {
   label: string;
   onClick: () => void;
 }
 
-export const UserMenuItem = ({ label, onClick }: MenuItemProps) => {
+export const UserMenuItem = ({ label, onClick }: UserMenuItemProps) => {
   return (
-    <button
+    <div
+      role="button"
       onClick={onClick}
-      className="px-4 py-3 font-semibold transition hover:bg-neutral-100"
+      className="w-full px-4 py-3 font-semibold transition hover:bg-neutral-100"
     >
       {label}
-    </button>
+    </div>
   );
 };
