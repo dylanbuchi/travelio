@@ -1,6 +1,12 @@
 "use client";
 
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import Button from "../Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
@@ -18,18 +24,20 @@ interface ModalProps {
   footer?: ReactElement;
 }
 
-export const Modal = ({
-  isOpen,
-  isDisabled,
-  actionLabel,
-  onClose,
-  onSubmit,
-  content,
-  footer,
-  secondaryAction,
-  secondaryActionLabel,
-  title,
-}: ModalProps) => {
+export const Modal = (props: ModalProps) => {
+  const {
+    isOpen,
+    isDisabled,
+    actionLabel,
+    onClose,
+    onSubmit,
+    content,
+    footer,
+    secondaryAction,
+    secondaryActionLabel,
+    title,
+  } = useMemo(() => props, [props]);
+
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
