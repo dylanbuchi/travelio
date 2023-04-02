@@ -40,7 +40,7 @@ export const Input = ({
         placeholder=" "
         type={type}
         className={clsx(
-          "input w-full rounded-md border-2 bg-white p-4 pt-8 font-normal outline-none transition disabled:cursor-not-allowed disabled:opacity-70",
+          "peer w-full rounded-md border-2 bg-white p-4 pt-8 font-normal outline-none transition disabled:cursor-not-allowed disabled:opacity-70",
           showDollarIcon ? "pl-9" : "pl-4",
           errors[id] ? "border-red-700" : "border-neutral-300",
           errors[id] ? "focus:red-700" : "focus:border-black"
