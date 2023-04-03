@@ -11,7 +11,7 @@ import React, {
 import { Button } from "../Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
-import { useOnClickOutside } from "@/app/hooks/useOnClickOutside";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -67,7 +67,7 @@ export const Modal = (props: ModalProps) => {
     secondaryAction();
   }, [secondaryAction, isDisabled]);
 
-  useOnClickOutside(modalRef, () => handelOnClose());
+  useClickOutside(modalRef, () => handelOnClose());
 
   if (!isOpen) return <></>;
 

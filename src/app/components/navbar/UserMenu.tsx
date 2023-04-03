@@ -6,7 +6,7 @@ import { Avatar } from "../Avatar";
 import { useRef, useState } from "react";
 import { UserMenuItem } from "./UserMenuItem";
 import { useRegisterModal } from "../../hooks/useRegisterModal";
-import { useOnClickOutside } from "@/app/hooks/useOnClickOutside";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 export const UserMenu = () => {
   const registerModal = useRegisterModal();
@@ -14,7 +14,7 @@ export const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const userMenuRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(userMenuRef, () => setIsOpen(false));
+  useClickOutside(userMenuRef, () => setIsOpen(false));
 
   function toggleMenu() {
     setIsOpen((prev) => !prev);
