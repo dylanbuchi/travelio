@@ -3,21 +3,25 @@
 import { APP_NAME } from "@/app/constants/app.constants";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { UserMenuItem } from "./UserMenuItem";
 import { useRegisterModal } from "../../hooks/useRegisterModal";
+import { useOnClickOutside } from "@/app/hooks/useOnClickOutside";
 
 export const UserMenu = () => {
   const registerModal = useRegisterModal();
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(userMenuRef, () => setIsOpen(false));
+
   function toggleMenu() {
     setIsOpen((prev) => !prev);
   }
 
   return (
-    <div className="relative text-sm">
+    <div ref={userMenuRef} className="relative text-sm">
       <div className="flex items-center gap-3">
         <button
           aria-label=""
