@@ -5,15 +5,17 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { Button } from "../Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
+import { useOnClickOutside } from "@/app/hooks/useOnClickOutside";
 
 interface ModalProps {
-  isOpen?: boolean; 
-  isDisabled?: boolean;     
+  isOpen?: boolean;
+  isDisabled?: boolean;
   actionLabel: string;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
@@ -40,6 +42,8 @@ export const Modal = (props: ModalProps) => {
 
   const [showModal, setShowModal] = useState(isOpen);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
@@ -63,12 +67,15 @@ export const Modal = (props: ModalProps) => {
     secondaryAction();
   }, [secondaryAction, isDisabled]);
 
+  useOnClickOutside(modalRef, () => handelOnClose());
+
   if (!isOpen) return <></>;
 
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-neutral-800/70 outline-none focus:outline-none">
         <section
+          ref={modalRef}
           className={clsx(
             "translate mx-auto flex h-fit flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:w-[50%] lg:h-[95%] landscape:h-[85%]",
             showModal ? "translate-y-0" : "translate-y-full",
