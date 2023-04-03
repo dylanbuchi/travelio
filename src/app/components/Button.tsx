@@ -24,7 +24,7 @@ const buttonClasses = {
   },
 };
 
-const Button = ({
+export const Button = ({
   label,
   isDisabled = false,
   isSmall = false,
@@ -47,5 +47,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;

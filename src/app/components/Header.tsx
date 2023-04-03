@@ -8,7 +8,11 @@ interface HeaderProps {
   alignCenter?: boolean;
 }
 
-const Header = ({ title, subTitle, alignCenter = false }: HeaderProps) => {
+export const Header = ({
+  title,
+  subTitle,
+  alignCenter = false,
+}: HeaderProps) => {
   return (
     <header className={clsx(alignCenter ? "text-center" : "text-start")}>
       <h1 className="text-2xl font-bold">{title}</h1>
@@ -18,5 +22,3 @@ const Header = ({ title, subTitle, alignCenter = false }: HeaderProps) => {
     </header>
   );
 };
-
-export default Header;

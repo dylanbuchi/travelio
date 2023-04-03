@@ -7,13 +7,13 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import Button from "../Button";
+import { Button } from "../Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
 
 interface ModalProps {
-  isOpen?: boolean;
-  isDisabled?: boolean;
+  isOpen?: boolean; 
+  isDisabled?: boolean;     
   actionLabel: string;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;

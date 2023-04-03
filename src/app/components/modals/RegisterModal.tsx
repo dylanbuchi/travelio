@@ -8,13 +8,13 @@ import { FcGoogle } from "react-icons/fc";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterModal } from "../../hooks/useRegisterModal";
 import { Modal } from "./Modal";
-import Header from "../Header";
+import { Header } from "../Header";
 import { APP_NAME } from "@/app/constants/app.constants";
 import { Input } from "../inputs/Input";
 import { toast } from "react-hot-toast";
-import Button from "../Button";
+import { Button } from "../Button";
 
-const RegisterModal = () => {
+export const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const registerModal = useRegisterModal();
 
@@ -113,5 +113,3 @@ const RegisterModal = () => {
     />
   );
 };
-
-export default RegisterModal;

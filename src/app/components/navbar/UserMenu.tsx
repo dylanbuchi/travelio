@@ -5,8 +5,11 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { useState } from "react";
 import { UserMenuItem } from "./UserMenuItem";
+import { useRegisterModal } from "../../hooks/useRegisterModal";
 
 export const UserMenu = () => {
+  const registerModal = useRegisterModal();
+
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleMenu() {
@@ -37,8 +40,8 @@ export const UserMenu = () => {
         <div className="absolute right-0 top-14 w-[40vw] overflow-hidden rounded-xl bg-white shadow-md md:w-[20vw]">
           <nav className="flex cursor-pointer flex-col">
             <>
-              <UserMenuItem label="Log in" onClick={() => {}} />
-              <UserMenuItem label="Log out" onClick={() => {}} />
+              <UserMenuItem label="Sign up" onClick={registerModal.onOpen} />
+              <UserMenuItem label="Log in" onClick={registerModal.onOpen} />
             </>
           </nav>
         </div>
