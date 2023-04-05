@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { AuthOptions, Awaitable } from "next-auth";
 
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
@@ -12,7 +12,7 @@ import bcrypt from "bcrypt";
 
 const { googleProvider, githubProvider, nextAuth } = AUTH_CONFIG;
 
-const nextAuthOptions: AuthOptions = {
+export const nextAuthOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
   providers: [
     GoogleProvider({
@@ -26,13 +26,14 @@ const nextAuthOptions: AuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "email", type: "text" },
+        email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials) {
-        if (!credentials?.email || credentials?.password)
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("Invalid credentials");
+        }
 
         const user = await prismaClient.user.findUnique({
           where: {
@@ -42,12 +43,12 @@ const nextAuthOptions: AuthOptions = {
 
         if (!user || !user.password) throw new Error("Invalid credentials");
 
-        const passwordIsInvalid = await bcrypt.compare(
+        const correctPassword = await bcrypt.compare(
           credentials.password,
           user.password
         );
 
-        if (passwordIsInvalid) throw new Error("Invalid password");
+        if (!correctPassword) throw new Error("Invalid password");
 
         return user;
       },
