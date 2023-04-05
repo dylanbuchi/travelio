@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Button } from "../Button";
+import { Button } from "../buttons/Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
