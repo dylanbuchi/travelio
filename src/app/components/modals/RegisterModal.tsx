@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState } from "react";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useRegisterModal } from "../../hooks/useRegisterModal";
 import { Modal } from "./Modal";
 import { Header } from "../Header";
 import { APP_NAME } from "@/app/constants/app.constants";
