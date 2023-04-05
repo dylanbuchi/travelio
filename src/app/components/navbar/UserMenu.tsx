@@ -5,11 +5,17 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { useRef, useState } from "react";
 import { UserMenuItem } from "./UserMenuItem";
-import { useRegisterModal } from "../../hooks/useRegisterModal";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { signOut } from "next-auth/react";
+import { SerializedUser } from "@/app/models/user.model";
+import { loginModalStore, registerModalStore } from "@/app/store/modal.store";
 
-export const UserMenu = () => {
-  const registerModal = useRegisterModal();
+interface UserMenuProps {
+  user?: SerializedUser | null;
+}
+export const UserMenu = ({ user }: UserMenuProps) => {
+  const { openModal: openLoginModal } = loginModalStore();
+  const { openModal: openRegisterModal } = registerModalStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,6 +25,9 @@ export const UserMenu = () => {
   function toggleMenu() {
     setIsOpen((prev) => !prev);
   }
+
+  const userImage = user?.image ?? "/images/avatar-placeholder.png";
+  const userName = user?.name ?? "Guest";
 
   return (
     <div ref={userMenuRef} className="relative text-sm">
@@ -35,18 +44,47 @@ export const UserMenu = () => {
           onClick={toggleMenu}
         >
           <AiOutlineMenu />
-          <div className="hidden md:block">
-            <Avatar />
+          <div className="hidden items-center space-x-2 text-sm md:flex">
+            <Avatar src={userImage} />
+            <span>{userName}</span>
           </div>
         </button>
       </div>
       {isOpen && (
         <div className="absolute right-0 top-14 w-[40vw] overflow-hidden rounded-xl bg-white shadow-md md:w-[20vw]">
           <nav className="flex cursor-pointer flex-col">
-            <>
-              <UserMenuItem label="Sign up" onClick={registerModal.onOpen} />
-              <UserMenuItem label="Log in" onClick={registerModal.onOpen} />
-            </>
+            {user ? (
+              <>
+                <UserMenuItem label="Trips" onClick={() => {}} />
+                <UserMenuItem label="Favorites" onClick={() => {}} />
+                <UserMenuItem label="Reservations" onClick={() => {}} />
+                <UserMenuItem label="Properties" onClick={() => {}} />
+
+                <UserMenuItem
+                  label={`${APP_NAME} my home`}
+                  onClick={() => {}}
+                />
+                <hr />
+                <UserMenuItem label="Log out" onClick={signOut} />
+              </>
+            ) : (
+              <>
+                <UserMenuItem
+                  label="Log in"
+                  onClick={() => {
+                    setIsOpen(false);
+                    openLoginModal();
+                  }}
+                />
+                <UserMenuItem
+                  label="Sign up"
+                  onClick={() => {
+                    setIsOpen(false);
+                    openRegisterModal();
+                  }}
+                />
+              </>
+            )}
           </nav>
         </div>
       )}
