@@ -11,10 +11,11 @@ import { APP_NAME } from "@/app/constants/app.constants";
 import { Input } from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import { SocialButtons } from "../buttons/SocialButtons";
+import { registerModalStore } from "@/app/store/modal.store";
 
 export const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const registerModal = useRegisterModal();
+  const { isOpen, closeModal } = registerModalStore();
 
   const {
     register,
@@ -33,7 +34,7 @@ export const RegisterModal = () => {
 
     axios
       .post("/api/register", data)
-      .then(() => registerModal.onClose())
+      .then(() => closeModal())
       .catch((error) => toast.error(error.message))
       .finally(() => setIsLoading(false));
   };
@@ -88,8 +89,8 @@ export const RegisterModal = () => {
     <Modal
       title="Log in or sign up"
       actionLabel="Submit"
-      isOpen={registerModal.isOpen}
-      onClose={registerModal.onClose}
+      isOpen={isOpen}
+      onClose={closeModal}
       isDisabled={isLoading}
       onSubmit={handleSubmit(onSubmit)}
       content={<Content />}
