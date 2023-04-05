@@ -10,7 +10,8 @@ export async function getSession() {
 export async function getCurrentUser() {
   try {
     const session = await getSession();
-    if (!session || !session.user || !session.user.email) return null;
+
+    if (!session?.user?.email) return null;
 
     const {
       user: { email: userEmail },
@@ -28,7 +29,7 @@ export async function getCurrentUser() {
       ...userWithoutPassword,
       createdAt: currentUser.createdAt.toISOString(),
       updatedAt: currentUser.updatedAt.toISOString(),
-      emailVerifiedAt: currentUser.emailVerifiedAt?.toISOString(),
+      emailVerified: currentUser.emailVerified?.toISOString(),
     };
 
     return serializedUser;
