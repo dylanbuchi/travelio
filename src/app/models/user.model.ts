@@ -2,12 +2,12 @@ import { User } from "@prisma/client";
 
 type RemovedUserFields =
   | "createdAt"
-  | "emailVerifiedAt"
+  | "emailVerified"
   | "updatedAt"
   | "password";
 
 export type SerializedUser = Omit<User, RemovedUserFields> & {
   createdAt: string;
   updatedAt: string;
-  emailVerifiedAt?: string;
+  emailVerified?: string;
 };
