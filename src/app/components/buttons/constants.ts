@@ -7,17 +7,13 @@ export const SOCIAL_BUTTONS = [
     id: 1,
     icon: FcGoogle,
     label: "Continue with Google",
-    onClick: () => {
-      signIn("google");
-    },
+    onClick: () => signIn("google"),
   },
 
   {
     id: 2,
     icon: AiFillGithub,
     label: "Continue with GitHub",
-    onClick: () => {
-      signIn("github");
-    },
+    onClick: () => signIn("github"),
   },
 ];
