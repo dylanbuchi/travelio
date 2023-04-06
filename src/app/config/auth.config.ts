@@ -8,6 +8,6 @@ export const AUTH_CONFIG = {
     clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET as string,
   },
   nextAuth: {
-    secret: process.env.NEXT_AUTH_SECRET as string,
+    secret: process.env.NEXTAUTH_SECRET as string,
   },
 };
