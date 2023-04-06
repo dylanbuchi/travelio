@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { SOCIAL_BUTTONS } from "./constants";
 import { Button } from "./Button";
@@ -14,7 +16,7 @@ export const SocialButtons = () => {
             outline
             icon={item.icon}
             label={item.label}
-            onClick={item.onClick}
+            onClick={() => item.onClick()}
           />
         </div>
       ))}
