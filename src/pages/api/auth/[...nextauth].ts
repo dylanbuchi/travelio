@@ -14,6 +14,7 @@ const { googleProvider, githubProvider, nextAuth } = AUTH_CONFIG;
 
 export const nextAuthOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
+
   providers: [
     GoogleProvider({
       clientId: googleProvider.clientId,
@@ -58,7 +59,6 @@ export const nextAuthOptions: AuthOptions = {
     signIn: "/",
   },
   debug: process.env.NODE_ENV === "development",
-  session: { strategy: "jwt" },
   secret: nextAuth.secret,
 };
 
