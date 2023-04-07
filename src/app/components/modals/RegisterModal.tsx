@@ -11,6 +11,7 @@ import { Input } from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import { SocialButtons } from "../buttons/SocialButtons";
 import { registerModalStore } from "@/app/store/modal.store";
+import { Divider } from "../Divider";
 
 export const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +72,7 @@ export const RegisterModal = () => {
 
   const Footer = () => (
     <>
-      <span className="text-center">or</span>
+      <Divider text="or" />
       <SocialButtons />
       <div className="mt-2 flex items-center justify-center text-xs text-neutral-500">
         <footer>

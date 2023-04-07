@@ -11,6 +11,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SocialButtons } from "../buttons/SocialButtons";
 import { loginModalStore } from "@/app/store/modal.store";
+import { Divider } from "../Divider";
 
 export const LoginModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +80,7 @@ export const LoginModal = () => {
 
   const Footer = () => (
     <>
-      <span className="text-center">or</span>
+      <Divider text="or" />
       <SocialButtons />
     </>
   );
