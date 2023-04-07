@@ -11,7 +11,6 @@ import React, {
 import { Button } from "../buttons/Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
-import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -42,12 +41,6 @@ export const Modal = (props: ModalProps) => {
 
   const [showModal, setShowModal] = useState(isOpen);
 
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
-
   const handelOnClose = useCallback(() => {
     if (isDisabled) return;
 
@@ -56,6 +49,22 @@ export const Modal = (props: ModalProps) => {
       onClose();
     }, 300);
   }, [isDisabled, onClose]);
+
+  useEffect(() => {
+    function handleEscapeKey(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        handelOnClose();
+      }
+    }
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  }, [handelOnClose]);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
 
   const handleOnSubmit = useCallback(() => {
     if (isDisabled) return;
@@ -67,15 +76,12 @@ export const Modal = (props: ModalProps) => {
     secondaryAction();
   }, [secondaryAction, isDisabled]);
 
-  useClickOutside(modalRef, () => handelOnClose());
-
   if (!isOpen) return <></>;
 
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-neutral-800/70 outline-none focus:outline-none">
         <section
-          ref={modalRef}
           className={clsx(
             "translate mx-auto flex h-fit flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:w-[50%] lg:h-[95%] landscape:h-[85%]",
             showModal ? "translate-y-0" : "translate-y-full",
