@@ -95,8 +95,8 @@ export const CATEGORIES = [
   },
 
   {
-    id: "lux",
-    label: "Lux",
+    id: "luxe",
+    label: "Luxe",
     icon: IoDiamond,
     description: "This is a luxurious property",
   },
