@@ -74,14 +74,6 @@ export const RegisterModal = () => {
     <>
       <Divider text="or" />
       <SocialButtons />
-      <div className="mt-2 flex items-center justify-center text-xs text-neutral-500">
-        <footer>
-          {"Already have an account? "}
-          <span className="cursor-pointer text-neutral-600 underline-offset-2 hover:text-black hover:underline">
-            Log in
-          </span>
-        </footer>
-      </div>
     </>
   );
 
