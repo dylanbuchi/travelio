@@ -105,6 +105,7 @@ export const Modal = (props: ModalProps) => {
             <div className="flex w-full items-center gap-4">
               {secondaryAction && secondaryActionLabel && (
                 <Button
+                  outline
                   isDisabled={isDisabled}
                   label={secondaryActionLabel || ""}
                   onClick={handleSecondaryAction}
