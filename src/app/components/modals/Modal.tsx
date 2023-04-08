@@ -83,12 +83,12 @@ export const Modal = (props: ModalProps) => {
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-neutral-800/70 outline-none focus:outline-none">
         <section
           className={clsx(
-            "translate mx-auto flex h-fit flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:w-[50%] lg:h-[95%] landscape:h-[85%]",
+            "translate mx-auto flex h-[90%] w-[90%] flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:h-fit sm:w-[50%] lg:h-[95%] mobile-tablet-landscape:h-[90%] mobile-tablet-landscape:w-[70%]",
             showModal ? "translate-y-0" : "translate-y-full",
             showModal ? "opacity-100" : "opacity-0"
           )}
         >
-          <header className="relative flex items-center justify-center rounded-t border-b border-gray-200 p-6">
+          <header className="flex items-center justify-center rounded-t border-b border-gray-200 p-6">
             <h2 className="text-lg font-semibold">{title && title}</h2>
             <button
               onClick={handelOnClose}
@@ -97,10 +97,8 @@ export const Modal = (props: ModalProps) => {
               <IoMdClose size={25} />
             </button>
           </header>
-          <div className="flex flex-col gap-2 overflow-y-auto p-6">
-            <div className="relative flex-auto pb-2">
-              {content && <>{content}</>}
-            </div>
+          <div className="flex h-full flex-col gap-2 overflow-y-auto p-6 pt-4">
+            <div className="flex-auto pb-2">{content && <>{content}</>}</div>
 
             <div className="flex w-full items-center gap-4">
               {secondaryAction && secondaryActionLabel && (
