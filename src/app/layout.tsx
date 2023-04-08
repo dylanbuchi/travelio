@@ -2,10 +2,9 @@ import "./styles/globals.css";
 import { Inter } from "next/font/google";
 import { Navbar } from "./components/navbar/Navbar";
 import { APP_NAME } from "./constants/app.constants";
-import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
-import { LoginModal } from "./components/modals/LoginModal";
 import { getCurrentUser } from "./services/user.session";
+import Modals from "./components/modals/Modals";
 
 export const metadata = {
   title: APP_NAME,
@@ -28,8 +27,7 @@ export default async function RootLayout({
       <body className={fontFamily.className}>
         <ToasterProvider />
         <Navbar user={user} />
-        <RegisterModal />
-        <LoginModal />
+        <Modals />
         {children}
       </body>
     </html>
