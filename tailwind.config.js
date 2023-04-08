@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       screens: {
         xs: "23rem",
+        "mobile-tablet-landscape": {
+          raw: "(orientation: landscape) and (hover: none) and (pointer: coarse) and (max-width: 1023px)",
+        },
       },
     },
   },
