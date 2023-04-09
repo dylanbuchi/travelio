@@ -7,7 +7,7 @@ interface CategoryButtonProps extends CategoryItemProps {
   onClick: (category: string) => void;
 }
 
-const CategoryButton = ({
+export const CategoryButton = ({
   id,
   label,
   onClick,
@@ -29,5 +29,3 @@ const CategoryButton = ({
     </button>
   );
 };
-
-export default CategoryButton;

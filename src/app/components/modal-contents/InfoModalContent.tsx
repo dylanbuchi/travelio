@@ -1,4 +1,6 @@
-import Counter, { CounterProps } from "@/app/components/Counter";
+"use client";
+
+import { CounterProps, Counter } from "@/app/components/Counter";
 import { ModalContentLayout } from "./ModalContentLayout";
 
 interface InfoModalContentProps {

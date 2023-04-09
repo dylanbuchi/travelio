@@ -1,8 +1,10 @@
+"use client";
+
 import clsx from "clsx";
 
 interface DividerProps {
   text: string;
-  smallText: boolean;
+  smallText?: boolean;
 }
 export const Divider = ({ text, smallText }: DividerProps) => {
   return (

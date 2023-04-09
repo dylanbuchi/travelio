@@ -8,7 +8,7 @@ import { useCallback } from "react";
 import queryString from "query-string";
 import { useRouter } from "next/navigation";
 
-interface CategoryItemProps {
+export interface CategoryItemProps {
   id: string;
   label: string;
   icon: IconType;
