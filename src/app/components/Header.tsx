@@ -17,7 +17,9 @@ export const Header = ({
     <header className={clsx(alignCenter ? "text-center" : "text-start")}>
       <h1 className="text-2xl font-bold">{title}</h1>
       {subTitle && (
-        <h2 className="mt-2 font-semibold text-neutral-500">{subTitle}</h2>
+        <h2 className="mt-2 whitespace-pre-line font-semibold text-neutral-500">
+          {subTitle}
+        </h2>
       )}
     </header>
   );
