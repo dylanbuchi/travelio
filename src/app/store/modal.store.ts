@@ -23,3 +23,4 @@ export const modalStore = (name: string) =>
 
 export const loginModalStore = modalStore("login");
 export const registerModalStore = modalStore("register");
+export const rentModalStore = modalStore("rent");
