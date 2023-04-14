@@ -8,7 +8,11 @@ import { UserMenuItem } from "./UserMenuItem";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { signOut } from "next-auth/react";
 import { SerializedUser } from "@/app/models/user.model";
-import { loginModalStore, registerModalStore } from "@/app/store/modal.store";
+import {
+  loginModalStore,
+  registerModalStore,
+  rentModalStore,
+} from "@/app/store/modal.store";
 
 interface UserMenuProps {
   user?: SerializedUser | null;
@@ -16,6 +20,7 @@ interface UserMenuProps {
 export const UserMenu = ({ user }: UserMenuProps) => {
   const { openModal: openLoginModal } = loginModalStore();
   const { openModal: openRegisterModal } = registerModalStore();
+  const { openModal: openRentModalStore } = rentModalStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,12 +37,16 @@ export const UserMenu = ({ user }: UserMenuProps) => {
   return (
     <div ref={userMenuRef} className="relative text-sm">
       <div className="flex items-center gap-3">
-        <button
-          aria-label=""
-          className="hidden cursor-pointer rounded-full px-4 py-3 font-semibold transition hover:bg-neutral-100 md:block"
-        >
-          {`${APP_NAME} your home`}
-        </button>
+        {user && (
+          <button
+            aria-label="Toggle rent menu"
+            onClick={openRentModalStore}
+            className="hidden cursor-pointer rounded-full px-4 py-3 font-semibold transition hover:bg-neutral-100 md:block"
+          >
+            {`${APP_NAME} your home`}
+          </button>
+        )}
+
         <button
           aria-label="Toggle User Menu"
           className="flex cursor-pointer items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-4 md:py-2"
@@ -52,7 +61,10 @@ export const UserMenu = ({ user }: UserMenuProps) => {
       </div>
       {isOpen && (
         <div className="absolute right-0 top-14 w-[40vw] overflow-hidden rounded-xl bg-white shadow-md md:w-[20vw]">
-          <nav className="flex cursor-pointer flex-col">
+          <nav
+            onClick={() => setIsOpen(false)}
+            className="flex cursor-pointer flex-col"
+          >
             {user ? (
               <>
                 <UserMenuItem label="Trips" onClick={() => {}} />
@@ -62,7 +74,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
 
                 <UserMenuItem
                   label={`${APP_NAME} my home`}
-                  onClick={() => {}}
+                  onClick={openRentModalStore}
                 />
                 <hr />
                 <UserMenuItem label="Log out" onClick={signOut} />
@@ -72,14 +84,12 @@ export const UserMenu = ({ user }: UserMenuProps) => {
                 <UserMenuItem
                   label="Log in"
                   onClick={() => {
-                    setIsOpen(false);
                     openLoginModal();
                   }}
                 />
                 <UserMenuItem
                   label="Sign up"
                   onClick={() => {
-                    setIsOpen(false);
                     openRegisterModal();
                   }}
                 />
