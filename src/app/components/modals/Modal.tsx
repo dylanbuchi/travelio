@@ -11,6 +11,7 @@ import React, {
 import { Button } from "../buttons/Button";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
+import { Divider } from "../Divider";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -23,6 +24,8 @@ interface ModalProps {
   title?: string;
   content?: ReactElement;
   footer?: ReactElement;
+  dividerText?: string;
+  showDivider?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
@@ -37,6 +40,8 @@ export const Modal = (props: ModalProps) => {
     secondaryAction,
     secondaryActionLabel,
     title,
+    showDivider,
+    dividerText = "",
   } = useMemo(() => props, [props]);
 
   const [showModal, setShowModal] = useState(isOpen);
@@ -80,7 +85,7 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-neutral-800/70 outline-none focus:outline-none">
+      <div className="fixed inset-0 z-50 flex items-center justify-center  overflow-auto bg-neutral-800/70  outline-none focus:outline-none">
         <section
           className={clsx(
             "translate mx-auto flex h-fit w-[90%] flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:h-fit sm:w-[50%] lg:h-[95%] max-height-813px:h-[90%] mobile-tablet-landscape:h-[90%] mobile-tablet-landscape:w-[70%]",
@@ -99,7 +104,7 @@ export const Modal = (props: ModalProps) => {
           </header>
           <div className="flex flex-col gap-2 overflow-y-auto p-6 pt-4">
             <div className="flex-auto pb-2">{content && <>{content}</>}</div>
-
+            {showDivider && <Divider smallText text={dividerText} />}
             <div className="flex w-full items-center gap-4">
               {secondaryAction && secondaryActionLabel && (
                 <Button
