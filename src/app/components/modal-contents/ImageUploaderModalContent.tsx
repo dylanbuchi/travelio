@@ -15,7 +15,7 @@ export const ImageUploaderModalContent = ({
   return (
     <ModalContentLayout
       title="Add a picture of your place"
-      subtitle="Show your guests how you place looks"
+      subtitle="Show your guests how your place looks"
     >
       <ImageUploader onChange={(value) => onChange(value)} image={image} />
     </ModalContentLayout>
