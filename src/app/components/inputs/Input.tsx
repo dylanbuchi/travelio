@@ -54,7 +54,7 @@ export const Input = ({
       />
       <label
         className={clsx(
-          "text-md absolute top-6 z-10 origin-[0] -translate-y-3 transform text-base text-gray-800 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-75",
+          "text-md absolute top-6 z-10 origin-[0] -translate-y-3 text-base text-gray-800 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-75",
           showDollarIcon ? "left-9" : "left-4",
           errors[id] ? "text-red-700" : "text-gray-800"
         )}
