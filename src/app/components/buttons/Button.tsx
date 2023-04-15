@@ -10,6 +10,7 @@ interface ButtonProps {
   outline?: boolean;
   icon?: IconType;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  classes?: string;
 }
 
 const buttonClasses = {
@@ -31,6 +32,7 @@ export const Button = ({
   outline = false,
   icon: Icon,
   onClick,
+  classes,
 }: ButtonProps) => {
   return (
     <button
@@ -39,7 +41,8 @@ export const Button = ({
       className={clsx(
         buttonClasses.base,
         buttonClasses.outline[outline ? "true" : "false"],
-        buttonClasses.size[isSmall ? "small" : "large"]
+        buttonClasses.size[isSmall ? "small" : "large"],
+        classes
       )}
     >
       {Icon && <Icon className="absolute left-4 top-3" size={24} />}
