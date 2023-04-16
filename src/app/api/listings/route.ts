@@ -2,6 +2,7 @@ import { prismaClient } from "@/app/database/prisma-db";
 import { NextResponse } from "next/server";
 import { Listing } from "prisma/prisma-client";
 import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
+import { serializeListing } from "@/app/helpers/serializers.helper";
 
 export async function POST(request: Request) {
   try {
@@ -35,7 +36,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(listing);
+    return NextResponse.json(serializeListing(listing));
   } catch (error) {
     return NextResponse.error();
   }
