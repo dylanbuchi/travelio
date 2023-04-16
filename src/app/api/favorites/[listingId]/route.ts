@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prismaClient } from "@/app/database/prisma-db";
 import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
 import { SerializedUser } from "@/app/models/user.model";
+import { serializeUser } from "@/app/helpers/serializers.helper";
 
 interface Params {
   listingId?: string;
@@ -30,7 +31,7 @@ export async function POST(request: Request, { params }: { params: Params }) {
     data: { favoriteIds },
   });
 
-  return NextResponse.json(updatedUser);
+  return NextResponse.json(serializeUser(updatedUser));
 }
 
 export async function DELETE(request: Request, { params }: { params: Params }) {
@@ -45,5 +46,5 @@ export async function DELETE(request: Request, { params }: { params: Params }) {
     data: { favoriteIds },
   });
 
-  return NextResponse.json(updatedUser);
+  return NextResponse.json(serializeUser(updatedUser));
 }
