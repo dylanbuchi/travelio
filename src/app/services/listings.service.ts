@@ -1,3 +1,5 @@
+import { SerializedListing } from "../models/listing.model";
+
 export async function getListings() {
   try {
     const listings = await prismaClient?.listing.findMany({
@@ -6,7 +8,13 @@ export async function getListings() {
       },
     });
 
-    return listings;
+    const serializedListings: SerializedListing[] | undefined = listings?.map(
+      (item) => {
+        return { ...item, createdAt: item.createdAt.toISOString() };
+      }
+    );
+
+    return serializedListings;
   } catch (error: any) {
     throw new Error(error?.message);
   }
