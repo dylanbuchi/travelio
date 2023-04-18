@@ -13,8 +13,16 @@ import { MdOutlineVilla } from "react-icons/md";
 import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
+import { IconType } from "react-icons";
 
-export const CATEGORIES = [
+export type Category = {
+  id: string;
+  label: string;
+  icon: IconType;
+  description: string;
+};
+
+export const CATEGORIES: Category[] = [
   {
     id: "beach",
     label: "Beach",
