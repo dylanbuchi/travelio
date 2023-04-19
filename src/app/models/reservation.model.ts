@@ -1,4 +1,9 @@
 import { Reservation } from "@prisma/client";
+import { SerializedListing } from "./listing.model";
+
+export type SerializedReservationWithListing = SerializedReservation & {
+  listing: SerializedListing;
+};
 
 export interface ReservationParams {
   listingId?: string;
