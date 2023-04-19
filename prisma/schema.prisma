@@ -81,7 +81,7 @@ model Reservation {
 
   startDate DateTime
   endDate   DateTime
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   totalPrice Int
 
