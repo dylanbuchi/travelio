@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import clsx from "clsx";
+import placeholderImage from "../../../public/images/avatar-placeholder.png";
 
 interface AvatarProps {
   src?: string;
@@ -11,16 +12,17 @@ interface AvatarProps {
 }
 
 export const Avatar = ({
-  src = "/images/avatar-placeholder.png",
+  src = placeholderImage.src,
   alt = "Avatar",
   size = 25,
   className,
 }: AvatarProps) => {
+  const imageSrc = src ?? placeholderImage.src;
   return (
     <Image
       loading="lazy"
       alt={alt}
-      src={src}
+      src={imageSrc}
       className={clsx("rounded-full", className)}
       height={size}
       width={size}
