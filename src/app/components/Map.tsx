@@ -8,6 +8,7 @@ import { Icon } from "leaflet";
 
 interface MapProps {
   center?: [number, number];
+  scrollWheelZoom?: boolean;
 }
 
 const markerIcon = new Icon({
@@ -15,13 +16,13 @@ const markerIcon = new Icon({
   iconSize: [20, 20],
 });
 
-export const Map = ({ center }: MapProps) => {
+export const Map = ({ center, scrollWheelZoom }: MapProps) => {
   return (
     <MapContainer
       zoom={center ? 6 : 2}
       center={center ?? [10, 10]}
-      scrollWheelZoom={false}
-      className={"h-[50vh]"}
+      scrollWheelZoom={scrollWheelZoom}
+      className={"z-40 h-[50vh]"}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
