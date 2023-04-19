@@ -2,17 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* base styles */
+
 html,
 body,
 :root {
   height: 100%;
 }
 
+/* react-date-range styles */
+
+.rdrDayDisabled {
+  @apply bg-gray-300 text-white;
+}
+
 .rdrCalendarWrapper {
-  width: 100%;
-  font-size: 0.75rem;
+  @apply w-full text-sm;
 }
 
 .rdrMonth {
-  width: 100%;
+  @apply w-full;
 }
