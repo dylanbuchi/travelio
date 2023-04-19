@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { prismaClient } from "@/app/database/prisma-db";
 import { NextResponse } from "next/server";
-import { convertUserToDTO } from "@/app/dto/user.dto";
+import { serializeUser } from "@/app/helpers/serializers.helper";
 
 export async function POST(request: Request) {
   try {
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         password: hashedPassword,
       },
     });
-    return NextResponse.json(convertUserToDTO(user));
+    return NextResponse.json(serializeUser(user));
   } catch (error) {
     return NextResponse.error();
   }
