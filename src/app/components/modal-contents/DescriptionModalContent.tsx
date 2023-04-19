@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { ModalContentLayout } from "./ModalContentLayout";
 import { Input } from "../inputs/Input";

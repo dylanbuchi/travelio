@@ -9,6 +9,7 @@ import { AUTH_CONFIG } from "@/app/config/auth.config";
 import { prismaClient } from "@/app/database/prisma-db";
 
 import bcrypt from "bcrypt";
+import { serializeUser } from "@/app/helpers/serializers.helper";
 
 const { googleProvider, githubProvider, nextAuth } = AUTH_CONFIG;
 
@@ -51,7 +52,7 @@ export const nextAuthOptions: AuthOptions = {
 
         if (!correctPassword) throw new Error("Invalid password");
 
-        return user;
+        return serializeUser(user);
       },
     }),
   ],

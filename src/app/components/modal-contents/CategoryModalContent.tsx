@@ -1,5 +1,3 @@
-"use client";
-
 import { CategoryButton } from "../buttons/CategoryButton";
 import { CATEGORIES } from "../navbar/categories/constants";
 import { ModalContentLayout } from "./ModalContentLayout";

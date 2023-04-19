@@ -1,5 +1,3 @@
-"use client";
-
 import { ImageUploader } from "../ImageUploader";
 import { ModalContentLayout } from "./ModalContentLayout";
 

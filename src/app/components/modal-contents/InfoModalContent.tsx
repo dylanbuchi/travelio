@@ -13,7 +13,7 @@ export const InfoModalContent = ({ counterData }: InfoModalContentProps) => {
       title={"Share info about your place"}
       subtitle={"What amenities do you have?"}
     >
-      {counterData.map((item, index) => (
+      {counterData.map((item) => (
         <div key={item.subtitle}>
           <Counter
             title={item.title}

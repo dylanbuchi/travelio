@@ -25,7 +25,7 @@ export const useFavorites = (
     async (event: React.MouseEvent<HTMLElement>) => {
       event.stopPropagation();
 
-      if (!user) return openModal();
+      if (!user?.email) return openModal();
 
       setFavorite((prev) => !prev);
 

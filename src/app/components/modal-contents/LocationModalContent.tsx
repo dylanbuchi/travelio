@@ -1,5 +1,3 @@
-"use client";
-
 import { CountrySelector } from "../CountrySelector";
 import { Map } from "../Map";
 import { Country } from "@/app/hooks/useCountries";

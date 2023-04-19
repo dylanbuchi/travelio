@@ -1,5 +1,3 @@
-"use client";
-
 import { IconType } from "react-icons";
 import clsx from "clsx";
 

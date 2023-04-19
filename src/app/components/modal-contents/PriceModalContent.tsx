@@ -1,5 +1,3 @@
-"use client";
-
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { Input } from "../inputs/Input";
 import { ModalContentLayout } from "./ModalContentLayout";

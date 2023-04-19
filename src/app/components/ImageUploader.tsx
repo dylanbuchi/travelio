@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
 import { TbPhotoPlus } from "react-icons/tb";

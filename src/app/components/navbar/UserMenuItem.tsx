@@ -1,5 +1,3 @@
-"use client";
-
 interface UserMenuItemProps {
   label: string;
   onClick: () => void;
