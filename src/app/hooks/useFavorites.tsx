@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import { SerializedUser } from "../models/user.model";
 import { useRouter } from "next/navigation";
@@ -10,9 +10,10 @@ export const useFavorites = (
   user?: SerializedUser | null
 ) => {
   const router = useRouter();
-  const [favorite, setFavorite] = useState(
-    () => user?.favoriteIds?.includes(listingId) ?? false
-  );
+
+  useEffect(() => {
+    router.refresh();
+  }, [user?.favoriteIds, router]);
 
   const { openModal } = loginModalStore();
 
@@ -21,12 +22,13 @@ export const useFavorites = (
     return favoriteIds.includes(listingId);
   }, [user?.favoriteIds, listingId]);
 
+  const [favorite, setFavorite] = useState(() => hasFavorite);
+
   const toggleFavorite = useCallback(
     async (event: React.MouseEvent<HTMLElement>) => {
       event.stopPropagation();
 
       if (!user?.email) return openModal();
-
       setFavorite((prev) => !prev);
 
       try {
@@ -35,12 +37,11 @@ export const useFavorites = (
           : () => axios.post(`/api/favorites/${listingId}`);
 
         await request();
-        router.refresh();
       } catch (error: any) {
         toast.error(error.message);
       }
     },
-    [hasFavorite, listingId, openModal, router, user]
+    [hasFavorite, listingId, openModal, user]
   );
 
   return { favorite, toggleFavorite };
