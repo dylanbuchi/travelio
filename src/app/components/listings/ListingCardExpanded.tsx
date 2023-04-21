@@ -108,8 +108,6 @@ export const ListingCardExpanded = ({
         router.push("/trips");
       })
       .catch((error) => {
-        console.log(error);
-
         toast.error(error?.message);
       })
       .finally(() => setIsLoading(false));
