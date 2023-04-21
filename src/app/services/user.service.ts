@@ -1,4 +1,5 @@
 import { serializeUser } from "../helpers/serializers.helper";
+import { prismaClient } from "../database/prisma-db";
 
 interface UserParams {
   userId: string;

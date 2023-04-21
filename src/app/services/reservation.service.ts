@@ -20,7 +20,7 @@ export async function getReservationsWithListing({
     if (userId) query.userId = userId;
     if (ownerId) query.listing = { userId: ownerId };
 
-    const reservationWithListings = await prismaClient.reservation.findMany({
+    const reservationWithListings = await prismaClient?.reservation.findMany({
       where: query,
       include: { listing: true },
       orderBy: { createdAt: "desc" },

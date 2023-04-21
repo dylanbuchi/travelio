@@ -6,7 +6,7 @@ export async function getFavoriteListings() {
   try {
     const user = await checkUserAuthentication();
 
-    const favoriteListings = await prismaClient.listing.findMany({
+    const favoriteListings = await prismaClient?.listing.findMany({
       where: {
         id: {
           in: [...user.favoriteIds],
