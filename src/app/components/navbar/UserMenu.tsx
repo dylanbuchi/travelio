@@ -64,7 +64,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute right-0 top-14 w-[40vw] overflow-hidden rounded-xl bg-white shadow-md md:w-[20vw]">
+        <div className="absolute right-0 top-[3.53rem] w-[40vw] overflow-hidden rounded-b-xl bg-white shadow-md md:w-[20vw]">
           <nav
             onClick={() => setIsOpen(false)}
             className="flex cursor-pointer flex-col"
@@ -77,10 +77,24 @@ export const UserMenu = ({ user }: UserMenuProps) => {
                     label="Trips"
                   />
                 </Link>
-                <UserMenuItem label="Favorites" onClick={() => {}} />
-                <UserMenuItem label="Reservations" onClick={() => {}} />
-                <UserMenuItem label="Properties" onClick={() => {}} />
-
+                <Link href="/favorites">
+                  <UserMenuItem
+                    isDisabled={pathname === "/favorites"}
+                    label="Favorites"
+                  />
+                </Link>
+                <Link href="/reservations">
+                  <UserMenuItem
+                    isDisabled={pathname === "/reservations"}
+                    label="Reservations"
+                  />
+                </Link>
+                <Link href="/properties">
+                  <UserMenuItem
+                    isDisabled={pathname === "/properties"}
+                    label="Properties"
+                  />
+                </Link>
                 <UserMenuItem
                   label={`${APP_NAME} my home`}
                   onClick={openRentModalStore}
