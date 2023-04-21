@@ -20,7 +20,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const user = await getCurrentUser();
-  console.log(user);
 
   return (
     <html lang="en">
@@ -28,7 +27,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <Navbar user={user} />
         <Modals />
-        {children}
+        <div className="container mx-auto">{children}</div>
       </body>
     </html>
   );

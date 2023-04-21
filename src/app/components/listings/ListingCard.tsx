@@ -38,6 +38,7 @@ export const ListingCard = (props: ListingCardProps) => {
   const location = getCountryByValue(listing.location);
   const category = listing.category ? listing.category : "Other";
   const image = listing.image ? listing.image : "/images/image-placeholder.png";
+  const hasPlaceHolderImage = !listing.image;
 
   const handleCancel = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,19 +68,23 @@ export const ListingCard = (props: ListingCardProps) => {
 
   return (
     <div className="group cursor-pointer">
-      <div className="flex w-full flex-col gap-1">
-        <div className="relative aspect-square w-full overflow-hidden rounded-xl">
-          <Link href={`listings/${listing.id}`}>
+      <div className="relative flex w-full flex-col gap-1">
+        <Link href={`listings/${listing.id}`}>
+          <div className="relative aspect-square w-full overflow-hidden rounded-xl">
             <Image
-              className="transition group-hover:scale-105"
+              priority={hasPlaceHolderImage}
+              className=" object-cover transition group-hover:scale-105"
               src={image}
               alt="Listing"
               fill
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             />
-          </Link>
-          <div hidden={!showHeartButton} className="absolute right-3 top-3">
-            <HeartButton listingId={listing.id} user={user} />
           </div>
+        </Link>
+        <div hidden={!showHeartButton} className="absolute right-3 top-3">
+          <HeartButton listingId={listing.id} user={user} />
         </div>
         <div className="font-semibold">
           {location?.label}, {location?.region}
@@ -93,6 +98,7 @@ export const ListingCard = (props: ListingCardProps) => {
           <div className="font-semibold">${price}</div>
           {!reservation && <div className=""> a night</div>}
         </div>
+
         {onAction && actionLabel && (
           <Button
             isSmall

@@ -2,7 +2,7 @@
 
 import { useFavorites } from "@/app/hooks/useFavorites";
 import { SerializedUser } from "@/app/models/user.model";
-import React, { useState } from "react";
+import { useState } from "react";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
 
 interface HeartButtonProps {
@@ -11,14 +11,19 @@ interface HeartButtonProps {
 }
 
 export const HeartButton = ({ listingId, user }: HeartButtonProps) => {
-  const { favorite, toggleFavorite } = useFavorites(listingId, user);
+  const { hasFavorite, toggleFavorite } = useFavorites(listingId, user);
+  const [favorite, setFavorite] = useState(() => hasFavorite);
+
   const [hover, setIsHover] = useState(false);
 
   return (
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      onClick={toggleFavorite}
+      onClick={(event) => {
+        if (user) setFavorite((prev) => !prev);
+        toggleFavorite(event);
+      }}
       className="relative cursor-pointer transition hover:opacity-60"
     >
       {favorite ? (

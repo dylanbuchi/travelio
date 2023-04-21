@@ -5,14 +5,17 @@ import { ModalContentLayout } from "./ModalContentLayout";
 
 interface InfoModalContentProps {
   counterData: CounterProps[];
+  title?: string;
+  subtitle?: string;
 }
 
-export const InfoModalContent = ({ counterData }: InfoModalContentProps) => {
+export const InfoModalContent = ({
+  counterData,
+  subtitle = "What amenities do you have?",
+  title = "Share info about your place",
+}: InfoModalContentProps) => {
   return (
-    <ModalContentLayout
-      title={"Share info about your place"}
-      subtitle={"What amenities do you have?"}
-    >
+    <ModalContentLayout title={title} subtitle={subtitle}>
       {counterData.map((item) => (
         <div key={item.subtitle}>
           <Counter

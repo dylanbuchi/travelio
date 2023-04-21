@@ -8,7 +8,9 @@ import { getCurrentUser } from "@/app/services/user.session";
 
 const ListingPage = async ({ params }: { params: ListingParams }) => {
   const reservationsWithListing = await getReservationsWithListing(params);
-  const listing = await getListingById(params);
+  const listing = params?.listingId
+    ? await getListingById(params.listingId)
+    : undefined;
 
   const listingOwner = await getUserById({ userId: listing?.userId ?? "" });
   const currentUser = await getCurrentUser();

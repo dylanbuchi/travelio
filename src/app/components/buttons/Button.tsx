@@ -20,7 +20,7 @@ const buttonClasses = {
     false: "bg-teal-600 border-teal-700 text-white",
   },
   size: {
-    small: "py-1 text-sm font-light",
+    small: "py-1 text-sm font-normal",
     large: "py-3 text-md font-semibold",
   },
 };

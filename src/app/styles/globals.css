@@ -17,9 +17,9 @@ body,
 }
 
 .rdrCalendarWrapper {
-  @apply w-full text-sm;
+  @apply w-full text-sm !important;
 }
 
 .rdrMonth {
-  @apply w-full;
+  @apply w-full !important;
 }

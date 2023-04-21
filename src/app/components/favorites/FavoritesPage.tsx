@@ -5,7 +5,6 @@ import { SerializedUser } from "@/app/models/user.model";
 import { PageLayout } from "../layouts/PageLayout";
 import { ListingCardLayout } from "../layouts/ListingCardLayout";
 import { ListingCard } from "../listings/ListingCard";
-import { useRefreshPage } from "@/app/hooks/useRefresh";
 
 interface FavoritesPageProps {
   currentUser?: SerializedUser | null;
@@ -16,8 +15,6 @@ const FavoritesPage = ({
   currentUser,
   favoriteListings,
 }: FavoritesPageProps) => {
-  useRefreshPage([favoriteListings, currentUser]);
-
   return (
     <PageLayout title="Favorites" subTitle="Manage your favorites listings">
       {favoriteListings.map((listing) => (

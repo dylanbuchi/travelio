@@ -20,7 +20,7 @@ export const Avatar = ({
   const imageSrc = src ?? placeholderImage.src;
   return (
     <Image
-      loading="lazy"
+      priority
       alt={alt}
       src={imageSrc}
       className={clsx("rounded-full", className)}

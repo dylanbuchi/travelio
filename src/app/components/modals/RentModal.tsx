@@ -42,6 +42,7 @@ export const RentModal = () => {
       direction === "next" ? Math.min(prev + 1, 5) : Math.max(prev - 1, 0)
     );
   }
+
   const actionLabel = useMemo(() => {
     return page === RentModalPages.PRICE ? "Create" : "Next";
   }, [page]);
@@ -144,6 +145,7 @@ export const RentModal = () => {
       case RentModalPages.LOCATION:
         return (
           <LocationModalContent
+            showMap
             location={location}
             onChange={(value) => setCustomValue("location", value)}
           />

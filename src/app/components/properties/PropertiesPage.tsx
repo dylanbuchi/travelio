@@ -7,7 +7,6 @@ import { toast } from "react-hot-toast";
 import { ListingCard } from "../listings/ListingCard";
 import { PageLayout } from "../layouts/PageLayout";
 import { ListingCardLayout } from "../layouts/ListingCardLayout";
-import { useRefreshPage } from "@/app/hooks/useRefresh";
 import { SerializedListing } from "@/app/models/listing.model";
 
 interface PropertiesPageProps {
@@ -22,8 +21,6 @@ export const PropertiesPage = ({
   const [filteredProperties, setFilteredProperties] = useState(() => [
     ...listings,
   ]);
-
-  useRefreshPage([listings, currentUser]);
 
   const onRemoveProperty = useCallback(
     (id?: string) => {

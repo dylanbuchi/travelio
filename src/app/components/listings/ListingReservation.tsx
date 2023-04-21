@@ -20,7 +20,7 @@ interface ListingReservationProps {
   currentUser?: SerializedUser | null;
 }
 
-const ListingReservation = (props: ListingReservationProps) => {
+export const ListingReservation = (props: ListingReservationProps) => {
   const {
     price,
     onChangeDateRange,
@@ -76,5 +76,3 @@ const ListingReservation = (props: ListingReservationProps) => {
     </div>
   );
 };
-
-export default ListingReservation;

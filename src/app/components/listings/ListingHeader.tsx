@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useCountries } from "@/app/hooks/useCountries";
 import { SerializedUser } from "@/app/models/user.model";
 import { Header } from "../Header";
-import Image from "next/image";
 import { HeartButton } from "../buttons/HeartButton";
 
 interface ListingHeaderProps {
@@ -36,6 +36,9 @@ export const ListingHeader = ({
           alt={"Listing"}
           className="w-full object-cover"
           fill
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
         />
         <div className="absolute right-2 top-2">
           <HeartButton listingId={id} user={currentUser} />
