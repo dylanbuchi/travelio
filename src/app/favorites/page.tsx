@@ -3,6 +3,8 @@ import { NoResults } from "../components/NoResults";
 import { getCurrentUser } from "../services/user.session";
 import FavoritesPage from "../components/favorites/FavoritesPage";
 import { ProtectedRoute } from "../components/ProtectedRoute";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 const FavoritesHomePage = async () => {
   const favoriteListings = await getFavoriteListings();
@@ -17,12 +19,14 @@ const FavoritesHomePage = async () => {
     );
 
   return (
-    <ProtectedRoute currentUser={currentUser}>
-      <FavoritesPage
-        favoriteListings={favoriteListings}
-        currentUser={currentUser}
-      />
-    </ProtectedRoute>
+    <Suspense fallback={<Loading />}>
+      <ProtectedRoute currentUser={currentUser}>
+        <FavoritesPage
+          favoriteListings={favoriteListings}
+          currentUser={currentUser}
+        />
+      </ProtectedRoute>
+    </Suspense>
   );
 };
 

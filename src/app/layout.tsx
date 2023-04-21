@@ -5,6 +5,10 @@ import { APP_NAME } from "./constants/app.constants";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { getCurrentUser } from "./services/user.session";
 import Modals from "./components/modals/Modals";
+import { Suspense } from "react";
+import Loading from "./loading";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: APP_NAME,
@@ -27,7 +31,9 @@ export default async function RootLayout({
         <ToasterProvider />
         <Navbar user={user} />
         <Modals />
-        <div className="container mx-auto">{children}</div>
+        <Suspense fallback={<Loading />}>
+          <div className="container mx-auto">{children}</div>
+        </Suspense>
       </body>
     </html>
   );

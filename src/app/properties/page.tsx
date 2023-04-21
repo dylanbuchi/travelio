@@ -3,6 +3,8 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import { getCurrentUser } from "../services/user.session";
 import { getListings } from "../services/listings.service";
 import { PropertiesPage } from "../components/properties/PropertiesPage";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 const PropertiesHomePage = async () => {
   const currentUser = await getCurrentUser();
@@ -20,9 +22,11 @@ const PropertiesHomePage = async () => {
     );
 
   return (
-    <ProtectedRoute currentUser={currentUser}>
-      <PropertiesPage currentUser={currentUser} listings={listings} />
-    </ProtectedRoute>
+    <Suspense fallback={<Loading />}>
+      <ProtectedRoute currentUser={currentUser}>
+        <PropertiesPage currentUser={currentUser} listings={listings} />
+      </ProtectedRoute>
+    </Suspense>
   );
 };
 
