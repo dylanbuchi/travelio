@@ -2,12 +2,42 @@ import { ListingParams, SerializedListing } from "../models/listing.model";
 import { prismaClient } from "../database/prisma-db";
 import { serializeListing } from "../helpers/serializers.helper";
 
-export async function getListings(params: { userId?: string }) {
+export async function getListings(params: ListingParams) {
   try {
-    const { userId } = params;
     let query: any = {};
 
-    if (userId) query.userId = userId;
+    if (params?.userId) query.userId = params.userId;
+
+    if (params?.roomCount)
+      query.roomCount = { gte: parseInt(params.roomCount) };
+    if (params?.bathroomCount)
+      query.bathroomCount = { gte: parseInt(params.bathroomCount) };
+    if (params?.guestCount)
+      query.guestCount = { gte: parseInt(params.guestCount) };
+
+    if (params?.location) query.location = params.location;
+
+    if (params?.category) query.category = params.category;
+
+    if (params?.startDate && params?.endDate) {
+      query.NOT = {
+        reservations: {
+          // filter out listings that are reserved
+          some: {
+            OR: [
+              {
+                endDate: { gte: params.startDate },
+                startDate: { lte: params.startDate },
+              },
+              {
+                startDate: { lte: params.endDate },
+                endDate: { gte: params.endDate },
+              },
+            ],
+          },
+        },
+      };
+    }
 
     const listings = await prismaClient?.listing.findMany({
       where: query,
@@ -29,16 +59,15 @@ export async function getListings(params: { userId?: string }) {
   }
 }
 
-export async function getListingById(params: ListingParams) {
+export async function getListingById(listingId: string) {
   try {
     const listing = await prismaClient?.listing.findUnique({
       where: {
-        id: params.listingId,
+        id: listingId,
       },
     });
 
     if (!listing) return;
-
     const serializedListing = serializeListing(listing);
 
     return serializedListing;
