@@ -1,8 +1,8 @@
 import { prismaClient } from "@/app/database/prisma-db";
 import { NextResponse } from "next/server";
-import { Listing } from "prisma/prisma-client";
 import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
 import { serializeListing } from "@/app/helpers/serializers.helper";
+import { Listing } from "@prisma/client";
 
 export async function POST(request: Request) {
   try {
