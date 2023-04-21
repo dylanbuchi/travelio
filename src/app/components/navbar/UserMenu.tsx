@@ -8,11 +8,14 @@ import { UserMenuItem } from "./UserMenuItem";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { signOut } from "next-auth/react";
 import { SerializedUser } from "@/app/models/user.model";
+import { usePathname } from "next/navigation";
+
 import {
   loginModalStore,
   registerModalStore,
   rentModalStore,
 } from "@/app/store/modal.store";
+import Link from "next/link";
 
 interface UserMenuProps {
   user?: SerializedUser | null;
@@ -30,6 +33,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
   function toggleMenu() {
     setIsOpen((prev) => !prev);
   }
+  const pathname = usePathname();
 
   const userImage = user?.image ?? "/images/avatar-placeholder.png";
   const userName = user?.name ?? "Guest";
@@ -67,7 +71,12 @@ export const UserMenu = ({ user }: UserMenuProps) => {
           >
             {user ? (
               <>
-                <UserMenuItem label="Trips" onClick={() => {}} />
+                <Link href="/trips">
+                  <UserMenuItem
+                    isDisabled={pathname === "/trips"}
+                    label="Trips"
+                  />
+                </Link>
                 <UserMenuItem label="Favorites" onClick={() => {}} />
                 <UserMenuItem label="Reservations" onClick={() => {}} />
                 <UserMenuItem label="Properties" onClick={() => {}} />
