@@ -2,9 +2,16 @@ import { ListingParams, SerializedListing } from "../models/listing.model";
 import { prismaClient } from "../database/prisma-db";
 import { serializeListing } from "../helpers/serializers.helper";
 
-export async function getListings() {
+export async function getListings(params: { userId?: string }) {
   try {
+    const { userId } = params;
+    let query: any = {};
+
+    if (userId) query.userId = userId;
+
     const listings = await prismaClient?.listing.findMany({
+      where: query,
+
       orderBy: {
         createdAt: "desc",
       },
