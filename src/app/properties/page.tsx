@@ -1,8 +1,8 @@
-import { NoResults } from "../components/NoResults";
-import { ProtectedRoute } from "../components/ProtectedRoute";
-import { getCurrentUser } from "../services/user.session";
-import { getListings } from "../services/listings.service";
-import { PropertiesPage } from "../components/properties/PropertiesPage";
+import { NoResults } from "@/components/NoResults";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { getCurrentUser } from "../../services/user.session";
+import { getListings } from "../../services/listings.service";
+import { PropertiesPage } from "@/components/properties/PropertiesPage";
 import { Suspense } from "react";
 import Loading from "../loading";
 
@@ -13,7 +13,7 @@ const PropertiesHomePage = async () => {
     userId: currentUser?.id,
   });
 
-  if (!listings.length)
+  if (!listings?.length)
     return (
       <NoResults
         title="No properties found"

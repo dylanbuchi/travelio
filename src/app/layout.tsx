@@ -1,10 +1,10 @@
-import "./styles/globals.css";
+import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-import { Navbar } from "./components/navbar/Navbar";
-import { APP_NAME } from "./constants/app.constants";
-import { ToasterProvider } from "./providers/ToasterProvider";
-import { getCurrentUser } from "./services/user.session";
-import Modals from "./components/modals/Modals";
+import { Navbar } from "@/components/navbar/Navbar";
+import { APP_NAME } from "../constants/app.constants";
+import { ToasterProvider } from "../providers/ToasterProvider";
+import { getCurrentUser } from "../services/user.session";
+import Modals from "@/components/modals/Modals";
 import { Suspense } from "react";
 import Loading from "./loading";
 

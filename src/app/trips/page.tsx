@@ -1,8 +1,8 @@
-import { NoResults } from "../components/NoResults";
-import { TripsPage } from "../components/trips/TripsPage";
-import { ProtectedRoute } from "../components/ProtectedRoute";
-import { getReservationsWithListing } from "../services/reservation.service";
-import { getCurrentUser } from "../services/user.session";
+import { NoResults } from "@/components/NoResults";
+import { TripsPage } from "@/components/trips/TripsPage";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { getReservationsWithListing } from "../../services/reservation.service";
+import { getCurrentUser } from "../../services/user.session";
 import Loading from "../loading";
 import { Suspense } from "react";
 

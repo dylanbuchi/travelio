@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { prismaClient } from "@/app/database/prisma-db";
-import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
-import { SerializedUser } from "@/app/models/user.model";
-import { serializeUser } from "@/app/helpers/serializers.helper";
+import { prismaClient } from "@/database/prisma-db";
+import { checkUserAuthentication } from "@/middleware/auth.middleware";
+import { SerializedUser } from "@/models/user.model";
+import { serializeUser } from "@/helpers/serializers.helper";
 
 interface Params {
   listingId?: string;

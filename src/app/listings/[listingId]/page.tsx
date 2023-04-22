@@ -1,11 +1,11 @@
-import { NoResults } from "@/app/components/NoResults";
-import { ListingCardExpanded } from "@/app/components/listings/ListingCardExpanded";
+import { NoResults } from "@/components/NoResults";
+import { ListingCardExpanded } from "@/components/listings/ListingCardExpanded";
 import Loading from "@/app/loading";
-import { ListingParams } from "@/app/models/listing.model";
-import { getListingById } from "@/app/services/listings.service";
-import { getReservationsWithListing } from "@/app/services/reservation.service";
-import { getUserById } from "@/app/services/user.service";
-import { getCurrentUser } from "@/app/services/user.session";
+import { ListingParams } from "@/models/listing.model";
+import { getListingById } from "@/services/listings.service";
+import { getReservationsWithListing } from "@/services/reservation.service";
+import { getUserById } from "@/services/user.service";
+import { getCurrentUser } from "@/services/user.session";
 import { Suspense } from "react";
 
 const ListingPage = async ({ params }: { params: ListingParams }) => {

@@ -5,11 +5,11 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { AUTH_CONFIG } from "@/app/config/auth.config";
-import { prismaClient } from "@/app/database/prisma-db";
+import { AUTH_CONFIG } from "@/config/auth.config";
+import { prismaClient } from "@/database/prisma-db";
 
 import bcrypt from "bcrypt";
-import { serializeUser } from "@/app/helpers/serializers.helper";
+import { serializeUser } from "@/helpers/serializers.helper";
 
 const { googleProvider, githubProvider, nextAuth } = AUTH_CONFIG;
 

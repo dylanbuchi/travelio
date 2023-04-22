@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { prismaClient } from "@/app/database/prisma-db";
-import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
+import { prismaClient } from "@/database/prisma-db";
+import { checkUserAuthentication } from "@/middleware/auth.middleware";
 import { Reservation } from "@prisma/client";
 
 export async function POST(request: Request) {

@@ -1,5 +1,5 @@
-import { prismaClient } from "@/app/database/prisma-db";
-import { checkUserAuthentication } from "@/app/middleware/auth.middleware";
+import { prismaClient } from "@/database/prisma-db";
+import { checkUserAuthentication } from "@/middleware/auth.middleware";
 import { NextResponse } from "next/server";
 
 export async function DELETE(

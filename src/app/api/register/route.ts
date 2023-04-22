@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-import { prismaClient } from "@/app/database/prisma-db";
+import { prismaClient } from "@/database/prisma-db";
 import { NextResponse } from "next/server";
-import { serializeUser } from "@/app/helpers/serializers.helper";
+import { serializeUser } from "@/helpers/serializers.helper";
 
 export async function POST(request: Request) {
   try {
