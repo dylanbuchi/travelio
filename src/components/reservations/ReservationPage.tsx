@@ -9,6 +9,7 @@ import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { ListingCard } from "../listings/ListingCard";
 import { PageLayout } from "../layouts/PageLayout";
+import { useRouter } from "next/navigation";
 
 interface ReservationPageProps {
   currentUser?: SerializedUser | null;
@@ -22,6 +23,8 @@ export const ReservationPage = ({
   const [filteredReservations, setFilteredReservations] = useState(() => [
     ...reservations,
   ]);
+
+  const router = useRouter();
 
   const onCancelReservation = useCallback(
     (reservationId?: string) => {
@@ -37,12 +40,15 @@ export const ReservationPage = ({
         prev.filter((item) => item.id !== reservationId)
       );
 
-      axios.delete("/api/reservations/" + reservationId).catch((error) => {
-        toast.error(error?.message);
-        setFilteredReservations([...original]);
-      });
+      axios
+        .delete("/api/reservations/" + reservationId)
+        .then(() => router.refresh())
+        .catch((error) => {
+          toast.error(error?.message);
+          setFilteredReservations([...original]);
+        });
     },
-    [filteredReservations]
+    [filteredReservations, router]
   );
   return (
     <PageLayout

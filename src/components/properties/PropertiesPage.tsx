@@ -8,6 +8,7 @@ import { ListingCard } from "../listings/ListingCard";
 import { PageLayout } from "../layouts/PageLayout";
 import { ListingCardLayout } from "../layouts/ListingCardLayout";
 import { SerializedListing } from "@/models/listing.model";
+import { useRouter } from "next/navigation";
 
 interface PropertiesPageProps {
   currentUser?: SerializedUser | null;
@@ -22,6 +23,8 @@ export const PropertiesPage = ({
     ...listings,
   ]);
 
+  const router = useRouter();
+
   const onRemoveProperty = useCallback(
     (id?: string) => {
       if (
@@ -34,12 +37,15 @@ export const PropertiesPage = ({
 
       setFilteredProperties((prev) => prev.filter((item) => item.id !== id));
 
-      axios.delete("/api/listings/" + id).catch((error) => {
-        setFilteredProperties([...originalProperties]);
-        toast.error(error?.message);
-      });
+      axios
+        .delete("/api/listings/" + id)
+        .then(() => router.refresh())
+        .catch((error) => {
+          setFilteredProperties([...originalProperties]);
+          toast.error(error?.message);
+        });
     },
-    [filteredProperties]
+    [filteredProperties, router]
   );
 
   return (

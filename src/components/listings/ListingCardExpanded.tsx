@@ -106,6 +106,7 @@ export const ListingCardExpanded = ({
         toast.success("Reservation created successfully");
         setDateRange(initialDateRange);
         router.push("/trips");
+        router.refresh();
       })
       .catch((error) => {
         toast.error(error?.message);
