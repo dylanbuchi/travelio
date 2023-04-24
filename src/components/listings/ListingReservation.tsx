@@ -3,11 +3,11 @@
 import { Range } from "react-date-range";
 import { Calendar } from "../Calendar";
 import { SerializedUser } from "@/models/user.model";
-import clsx from "clsx";
 import { useState } from "react";
 import { loginModalStore } from "@/store/modal.store";
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
 import { Button } from "../buttons/Button";
+import { Dropdown } from "../Dropdown";
 
 interface ListingReservationProps {
   price: number;
@@ -54,12 +54,15 @@ export const ListingReservation = (props: ListingReservationProps) => {
             <BsFillArrowDownCircleFill className="absolute right-2 top-[0.70rem] text-xl transition" />
           )}
         </div>
-        <div hidden={!showCalendar} className={clsx("w-full")}>
-          <Calendar
-            value={dateRange}
-            disabledDates={disabledDates}
-            onChange={(value) => onChangeDateRange(value.selection)}
-          />
+        <Dropdown show={showCalendar}>
+          <div>
+            <Calendar
+              value={dateRange}
+              disabledDates={disabledDates}
+              onChange={(value) => onChangeDateRange(value.selection)}
+            />
+          </div>
+
           <div className="flex w-full cursor-default items-center justify-between border-t border-neutral-500 p-2 px-4">
             <div>Total price:</div>
             <div className="font-semibold">${totalPrice}</div>
@@ -71,7 +74,7 @@ export const ListingReservation = (props: ListingReservationProps) => {
               onClick={onSubmit}
             />
           </div>
-        </div>
+        </Dropdown>
       </div>
     </div>
   );

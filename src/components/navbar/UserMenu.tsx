@@ -16,6 +16,7 @@ import {
   rentModalStore,
 } from "@/store/modal.store";
 import Link from "next/link";
+import { Dropdown } from "../Dropdown";
 
 interface UserMenuProps {
   user?: SerializedUser | null;
@@ -63,64 +64,66 @@ export const UserMenu = ({ user }: UserMenuProps) => {
           </div>
         </button>
       </div>
-      {isOpen && (
-        <div className="absolute right-0 top-[3.53rem] w-[40vw] overflow-hidden rounded-b-xl bg-white shadow-md md:w-[20vw]">
-          <nav
-            onClick={() => setIsOpen(false)}
-            className="flex cursor-pointer flex-col"
-          >
-            {user ? (
-              <>
-                <Link href="/trips">
+      <Dropdown show={isOpen}>
+        {isOpen && (
+          <div className="absolute right-0 top-[0.4rem] w-[40vw] overflow-hidden rounded-b-xl bg-white shadow-md md:w-[20vw]">
+            <nav
+              onClick={() => setIsOpen(false)}
+              className="flex cursor-pointer flex-col"
+            >
+              {user ? (
+                <>
+                  <Link href="/trips">
+                    <UserMenuItem
+                      isDisabled={pathname === "/trips"}
+                      label="Trips"
+                    />
+                  </Link>
+                  <Link href="/favorites">
+                    <UserMenuItem
+                      isDisabled={pathname === "/favorites"}
+                      label="Favorites"
+                    />
+                  </Link>
+                  <Link href="/reservations">
+                    <UserMenuItem
+                      isDisabled={pathname === "/reservations"}
+                      label="Reservations"
+                    />
+                  </Link>
+                  <Link href="/properties">
+                    <UserMenuItem
+                      isDisabled={pathname === "/properties"}
+                      label="Properties"
+                    />
+                  </Link>
                   <UserMenuItem
-                    isDisabled={pathname === "/trips"}
-                    label="Trips"
+                    label={`${APP_NAME} my home`}
+                    onClick={openRentModalStore}
                   />
-                </Link>
-                <Link href="/favorites">
+                  <hr />
+                  <UserMenuItem label="Log out" onClick={signOut} />
+                </>
+              ) : (
+                <>
                   <UserMenuItem
-                    isDisabled={pathname === "/favorites"}
-                    label="Favorites"
+                    label="Log in"
+                    onClick={() => {
+                      openLoginModal();
+                    }}
                   />
-                </Link>
-                <Link href="/reservations">
                   <UserMenuItem
-                    isDisabled={pathname === "/reservations"}
-                    label="Reservations"
+                    label="Sign up"
+                    onClick={() => {
+                      openRegisterModal();
+                    }}
                   />
-                </Link>
-                <Link href="/properties">
-                  <UserMenuItem
-                    isDisabled={pathname === "/properties"}
-                    label="Properties"
-                  />
-                </Link>
-                <UserMenuItem
-                  label={`${APP_NAME} my home`}
-                  onClick={openRentModalStore}
-                />
-                <hr />
-                <UserMenuItem label="Log out" onClick={signOut} />
-              </>
-            ) : (
-              <>
-                <UserMenuItem
-                  label="Log in"
-                  onClick={() => {
-                    openLoginModal();
-                  }}
-                />
-                <UserMenuItem
-                  label="Sign up"
-                  onClick={() => {
-                    openRegisterModal();
-                  }}
-                />
-              </>
-            )}
-          </nav>
-        </div>
-      )}
+                </>
+              )}
+            </nav>
+          </div>
+        )}
+      </Dropdown>
     </div>
   );
 };
