@@ -10,6 +10,7 @@ interface InputProps {
   showDollarIcon?: boolean;
   isRequired?: boolean;
   errors: FieldErrors;
+  value?: string;
   register: UseFormRegister<FieldValues>;
 }
 
@@ -21,6 +22,7 @@ export const Input = ({
   showDollarIcon,
   isRequired,
   errors,
+  value,
   register,
 }: InputProps) => {
   return (
@@ -36,7 +38,7 @@ export const Input = ({
       <input
         id={id}
         disabled={isDisabled}
-        {...register(id, { required: isRequired })}
+        {...register(id, { required: isRequired, value: value ?? "" })}
         placeholder=" "
         type={type}
         className={clsx(

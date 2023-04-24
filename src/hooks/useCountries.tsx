@@ -23,7 +23,7 @@ export const useCountries = () => {
 
   function getCountryByValue(value: string) {
     return formattedCountries.find(
-      (item) => item.value.toLowerCase() === value.toLowerCase()
+      (item) => item.value.toLowerCase() === value?.toLowerCase()
     );
   }
 

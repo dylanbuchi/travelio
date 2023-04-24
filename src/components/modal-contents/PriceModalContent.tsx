@@ -1,6 +1,7 @@
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { Input } from "../inputs/Input";
 import { ModalContentLayout } from "./ModalContentLayout";
+import { listingStore } from "@/store/listing.store";
 
 interface PriceModalContentProps {
   isLoading: boolean;
@@ -12,6 +13,7 @@ export const PriceModalContent = ({
   register,
   errors,
 }: PriceModalContentProps) => {
+  const { listing } = listingStore();
   return (
     <ModalContentLayout
       title="Set your price"
@@ -26,6 +28,7 @@ export const PriceModalContent = ({
         errors={errors}
         register={register}
         isRequired
+        value={listing?.price?.toString() ?? "1"}
       />
     </ModalContentLayout>
   );

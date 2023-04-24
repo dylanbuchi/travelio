@@ -96,7 +96,7 @@ export const ListingCard = (props: ListingCardProps) => {
         <div className="flex items-center gap-1">
           {reservation && <div className="">Total price: </div>}
           <div className="font-semibold">${price}</div>
-          {!reservation && <div className=""> a night</div>}
+          {!reservation && <div className=""> per night</div>}
         </div>
 
         {onAction && actionLabel && (

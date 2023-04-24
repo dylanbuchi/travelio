@@ -1,7 +1,7 @@
-import React from "react";
 import { ModalContentLayout } from "./ModalContentLayout";
 import { Input } from "../inputs/Input";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { listingStore } from "@/store/listing.store";
 
 interface DescriptionModalContentProps {
   isLoading: boolean;
@@ -12,14 +12,17 @@ interface DescriptionModalContentProps {
 export const DescriptionModalContent = ({
   isLoading,
   errors,
+
   register,
 }: DescriptionModalContentProps) => {
-  const title = "What makes your place special?";
-  const subtitle = `Write a title and a short description that highlight the best features and benefits of your place.\n
+  const { listing } = listingStore();
+
+  const headerTitle = "What makes your place special?";
+  const headerSubtitle = `Write a title and a short description that highlight the best features and benefits of your place.\n
   For example:\n🌲 Cozy cabin in the woods with a fireplace 🔥\n🌊 Modern apartment near the beach with a balcony 🌇`;
 
   return (
-    <ModalContentLayout title={title} subtitle={subtitle}>
+    <ModalContentLayout title={headerTitle} subtitle={headerSubtitle}>
       <Input
         id="title"
         label="Title"
@@ -27,6 +30,7 @@ export const DescriptionModalContent = ({
         register={register}
         errors={errors}
         isRequired
+        value={listing?.title}
       />
 
       <Input
@@ -36,6 +40,7 @@ export const DescriptionModalContent = ({
         register={register}
         errors={errors}
         isRequired
+        value={listing?.description}
       />
     </ModalContentLayout>
   );

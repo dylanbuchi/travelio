@@ -2,7 +2,6 @@ import { prismaClient } from "@/database/prisma-db";
 import { NextResponse } from "next/server";
 import { checkUserAuthentication } from "@/middleware/auth.middleware";
 import { ListingParams } from "@/models/listing.model";
-import { Listing } from "@prisma/client";
 
 export async function DELETE(
   request: Request,

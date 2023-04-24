@@ -8,7 +8,7 @@ import { APP_NAME } from "@/constants/app.constants";
 import { rentModalStore } from "@/store/modal.store";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Country } from "@/hooks/useCountries";
+import { Country, useCountries } from "@/hooks/useCountries";
 import { CategoryModalContent } from "../modal-contents/CategoryModalContent";
 import { LocationModalContent } from "../modal-contents/LocationModalContent";
 import { InfoModalContent } from "../modal-contents/InfoModalContent";
@@ -19,6 +19,8 @@ import { PriceModalContent } from "../modal-contents/PriceModalContent";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Listing } from "@prisma/client";
+import { SerializedListing } from "@/models/listing.model";
+import { listingStore } from "@/store/listing.store";
 
 const enum RentModalPages {
   CATEGORY = 0,
@@ -32,6 +34,9 @@ const enum RentModalPages {
 export const RentModal = () => {
   const { isOpen, closeModal } = rentModalStore();
 
+  const { requestMethod, setRequestMethod, setListing, listing } =
+    listingStore();
+
   const [page, setPage] = useState(RentModalPages.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,8 +49,12 @@ export const RentModal = () => {
   }
 
   const actionLabel = useMemo(() => {
-    return page === RentModalPages.PRICE ? "Create" : "Next";
-  }, [page]);
+    return page === RentModalPages.PRICE
+      ? requestMethod === "PATCH"
+        ? "Update"
+        : "Create"
+      : "Next";
+  }, [page, requestMethod]);
 
   const {
     register,
@@ -54,27 +63,25 @@ export const RentModal = () => {
     watch,
     formState: { errors },
     reset,
-  } = useForm<FieldValues>({
-    defaultValues: {
-      category: "",
-      location: null,
-      guestCount: 1,
-      roomCount: 1,
-      bathroomCount: 1,
-      image: "",
-      title: "",
-      description: "",
-    },
-  });
+  } = useForm<FieldValues>();
 
-  const category: string = watch("category");
-  const location: Country = watch("location");
+  const { getCountryByValue } = useCountries();
 
-  const guestCount: number = watch("guestCount");
-  const roomCount: number = watch("roomCount");
-  const bathroomCount: number = watch("bathroomCount");
+  const category: string = watch("category", listing?.category ?? "");
+  const location: Country = watch(
+    "location",
+    getCountryByValue(listing?.location ?? null)
+  );
 
-  const image: string = watch("image");
+  const guestCount: number = watch("guestCount", listing?.guestCount ?? 1);
+  const roomCount: number = watch("roomCount", listing?.roomCount ?? 1);
+
+  const bathroomCount: number = watch(
+    "bathroomCount",
+    listing?.bathroomCount ?? 1
+  );
+
+  const image: string = watch("image", listing?.image ?? "");
 
   const counterData: CounterProps[] = [
     {
@@ -105,27 +112,79 @@ export const RentModal = () => {
     });
   }
 
+  function resetAll() {
+    setIsLoading(false);
+    setRequestMethod(undefined);
+    setListing({} as SerializedListing);
+  }
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (page !== RentModalPages.PRICE) return moveToPage("next");
     setIsLoading(true);
 
     const dataToSend: Partial<Listing> = {
+      image: "",
+      bathroomCount: 1,
+      roomCount: 1,
+      guestCount: 1,
+      category: "",
       ...data,
       price: parseInt(data.price),
-      location: data?.location?.value,
+      location: data?.location?.value ?? "",
     };
 
-    axios
-      .post("/api/listings", dataToSend)
-      .then(() => {
-        toast.success("Listing created with success!");
-        setPage(RentModalPages.CATEGORY);
-        router.refresh();
-        closeModal();
-        reset();
-      })
-      .catch((error) => toast.error(error.message))
-      .finally(() => setIsLoading(false));
+    const listingsBaseUrl = `/api/listings`;
+
+    if (requestMethod === "PATCH") {
+      if (!listing?.id) return;
+
+      const currentData: Partial<Listing> = { ...dataToSend };
+
+      const updatedData: any = {};
+
+      let key: keyof Listing;
+
+      for (key in currentData) {
+        if (currentData[key] === "" || currentData[key] == undefined) {
+          if (listing.hasOwnProperty(key)) {
+            updatedData[key] = listing[key];
+          }
+        } else {
+          updatedData[key] = currentData[key];
+        }
+      }
+
+      axios
+        .patch(`${listingsBaseUrl}/${listing.id}`, {
+          ...updatedData,
+        })
+        .then(() => {
+          setPage(RentModalPages.CATEGORY);
+          router.refresh();
+          closeModal();
+          reset();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          closeModal();
+        })
+        .finally(() => {
+          resetAll();
+        });
+    } else {
+      axios
+        .post(listingsBaseUrl, dataToSend)
+        .then(() => {
+          setPage(RentModalPages.CATEGORY);
+          router.refresh();
+          closeModal();
+          reset();
+        })
+        .catch((error) => toast.error(error.message))
+        .finally(() => {
+          resetAll();
+        });
+    }
   };
 
   const secondaryActionLabel = useMemo(() => {
@@ -188,7 +247,7 @@ export const RentModal = () => {
   return (
     <Modal
       showDivider
-      dividerText={(page + 1).toString()}
+      dividerText={(page + 1)?.toString()}
       content={<ModalContent />}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
