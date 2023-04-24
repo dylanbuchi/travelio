@@ -2,12 +2,11 @@ import { prismaClient } from "@/database/prisma-db";
 import { NextResponse } from "next/server";
 import { checkUserAuthentication } from "@/middleware/auth.middleware";
 import { serializeListing } from "@/helpers/serializers.helper";
-import { Listing } from "@prisma/client";
 
 export async function POST(request: Request) {
   try {
     const user = await checkUserAuthentication();
-    const listingData: Listing = await request.json();
+    const listingData = await request.json();
 
     const {
       title,
