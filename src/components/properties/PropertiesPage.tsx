@@ -48,7 +48,7 @@ export const PropertiesPage = ({
   return (
     <PageLayout title="Properties" subTitle="Manage your listed properties">
       {listings.map((property) => (
-        <ListingCardLayout key={property.id} size={listings.length}>
+        <ListingCardLayout key={property.id} size={listings?.length}>
           <ListingCard
             actionId={property.id}
             user={currentUser}

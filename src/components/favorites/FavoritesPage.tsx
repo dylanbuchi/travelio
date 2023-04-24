@@ -18,7 +18,7 @@ const FavoritesPage = ({
   return (
     <PageLayout title="Favorites" subTitle="Manage your favorites listings">
       {favoriteListings.map((listing) => (
-        <ListingCardLayout key={listing.id} size={favoriteListings.length}>
+        <ListingCardLayout key={listing.id} size={favoriteListings?.length}>
           <ListingCard
             actionId={listing.id}
             user={currentUser}

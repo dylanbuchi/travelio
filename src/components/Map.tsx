@@ -16,7 +16,7 @@ const markerIcon = new Icon({
   iconSize: [20, 20],
 });
 
-export const Map = ({ center, scrollWheelZoom }: MapProps) => {
+const Map = ({ center, scrollWheelZoom }: MapProps) => {
   return (
     <MapContainer
       zoom={center ? 6 : 2}
@@ -34,3 +34,5 @@ export const Map = ({ center, scrollWheelZoom }: MapProps) => {
     </MapContainer>
   );
 };
+
+export default Map;

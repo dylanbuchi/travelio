@@ -58,7 +58,7 @@ export const ReservationPage = ({
       {filteredReservations.map((reservation) => (
         <ListingCardLayout
           key={reservation.id}
-          size={filteredReservations.length}
+          size={filteredReservations?.length}
         >
           <ListingCard
             actionId={reservation.id}

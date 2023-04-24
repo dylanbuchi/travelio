@@ -1,7 +1,7 @@
 import { CountrySelector } from "../CountrySelector";
-import { Map } from "../Map";
 import { Country } from "@/hooks/useCountries";
 import { ModalContentLayout } from "./ModalContentLayout";
+import { MapWithNoSSR } from "../MapWithoutSSR";
 
 interface LocationModalContentProps {
   location: Country;
@@ -29,7 +29,7 @@ export const LocationModalContent = ({
         </div>
         {showMap && (
           <div className={"relative z-10"}>
-            <Map center={location?.latlng} />
+            <MapWithNoSSR scrollWheelZoom center={location?.latlng} />
           </div>
         )}
       </ModalContentLayout>

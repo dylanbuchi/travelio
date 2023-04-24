@@ -5,7 +5,7 @@ import { Category } from "../navbar/categories/constants";
 import { useCountries } from "@/hooks/useCountries";
 import { Avatar } from "../Avatar";
 import ListingCategory from "./ListingCategory";
-import { Map } from "../Map";
+import { MapWithNoSSR } from "../MapWithoutSSR";
 
 interface ListingInfoProps {
   user?: SerializedUser | null;
@@ -68,7 +68,7 @@ export const ListingInfo = (props: ListingInfoProps) => {
       <div>{listingInfo.description}</div>
       <hr />
       <div className={"mb-2 h-full sm:mb-10"}>
-        <Map scrollWheelZoom center={mapCoords} />
+        <MapWithNoSSR scrollWheelZoom center={mapCoords} />
       </div>
     </div>
   );

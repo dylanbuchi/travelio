@@ -52,7 +52,7 @@ export const TripsPage = ({ currentUser, reservations }: TripsPageProps) => {
       {filteredReservations.map((reservation) => (
         <ListingCardLayout
           key={reservation.id}
-          size={filteredReservations.length}
+          size={filteredReservations?.length}
         >
           <ListingCard
             actionId={reservation.id}

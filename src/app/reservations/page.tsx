@@ -13,7 +13,7 @@ const ReservationsHomePage = async () => {
     ownerId: currentUser?.id,
   });
 
-  if (!reservationsWithListing.length)
+  if (!reservationsWithListing?.length)
     return (
       <NoResults
         title="No reservations found"

@@ -13,7 +13,7 @@ const TripsHomePage = async () => {
     userId: currentUser?.id,
   });
 
-  if (!reservationsWithListing.length)
+  if (!reservationsWithListing?.length)
     return (
       <NoResults title="No trips found" subtitle="Try reserving a trip!" />
     );
