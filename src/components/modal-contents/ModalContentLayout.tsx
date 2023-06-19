@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "../Header";
-import { PropsWithChildren, ReactElement, ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
 interface ModalContentLayoutProps extends PropsWithChildren {
   title: string;

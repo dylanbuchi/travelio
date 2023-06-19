@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { ListingCard } from "@/components/listings/ListingCard";
 import { NoResults } from "@/components/NoResults";
 import { ListingParams } from "@/models/listing.model";
 import { getListings } from "@/services/listings.service";

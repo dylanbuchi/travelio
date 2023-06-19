@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useMemo, useState, useTransition } from "react";
+import { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 import { SerializedUser } from "@/models/user.model";
 import { loginModalStore } from "@/store/modal.store";
