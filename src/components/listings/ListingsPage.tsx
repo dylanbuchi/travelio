@@ -10,8 +10,8 @@ interface ListingPageProps {
 }
 const ListingsPage = ({ listings, currentUser }: ListingPageProps) => {
   return (
-    <div className="container mx-auto">
-      <AnimatedLayout classes="grid grid-cols-1 gap-8 p-10 pt-[11.5rem] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="container mx-auto dark:bg-gray-950">
+      <AnimatedLayout classes="dark:bg-gray-950 grid grid-cols-1 gap-8 p-10 pt-[11.5rem] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {listings.map((listing) => (
           <ListingCard user={currentUser} listing={listing} key={listing.id} />
         ))}

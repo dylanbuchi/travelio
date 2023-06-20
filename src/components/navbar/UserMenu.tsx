@@ -46,7 +46,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
           <button
             aria-label="Toggle rent menu"
             onClick={openRentModalStore}
-            className="hidden cursor-pointer rounded-full px-4 py-3 font-semibold transition hover:bg-neutral-100 md:block"
+            className="hidden cursor-pointer rounded-full px-4 py-3 font-semibold transition hover:bg-neutral-100 dark:hover:bg-gray-950 md:block"
           >
             {`${APP_NAME} your home`}
           </button>
@@ -54,7 +54,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
 
         <button
           aria-label="Toggle User Menu"
-          className="flex cursor-pointer items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-4 md:py-2"
+          className="flex cursor-pointer items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md dark:border-gray-600 dark:shadow-gray-600 md:px-4 md:py-2"
           onClick={toggleMenu}
         >
           <AiOutlineMenu />
@@ -66,7 +66,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
       </div>
       <Dropdown show={isOpen}>
         {isOpen && (
-          <div className="absolute right-0 top-[0.4rem] w-[40vw] overflow-hidden rounded-b-xl bg-white shadow-md md:w-[20vw]">
+          <div className="absolute right-0 top-[0.4rem] w-[40vw] overflow-hidden rounded-b-xl bg-white shadow-md dark:border-gray-600 dark:shadow-gray-600 md:w-[20vw]">
             <nav
               onClick={() => setIsOpen(false)}
               className="flex cursor-pointer flex-col"

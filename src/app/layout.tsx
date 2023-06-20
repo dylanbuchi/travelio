@@ -27,12 +27,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={fontFamily.className}>
+      <body className={`${fontFamily.className} dark:bg-gray-950}`}>
         <ToasterProvider />
         <Navbar user={user} />
         <Modals />
         <Suspense fallback={<Loading />}>
-          <div className="container mx-auto">{children}</div>
+          <div className="container mx-auto dark:bg-gray-950">{children}</div>
         </Suspense>
       </body>
     </html>

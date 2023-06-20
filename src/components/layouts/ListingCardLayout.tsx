@@ -10,7 +10,12 @@ export const ListingCardLayout = ({
   children,
 }: ListingCardLayoutProps) => {
   return (
-    <div className={clsx("mb-6", size < 5 ? "lg:mb-0" : "lg:mb-10")}>
+    <div
+      className={clsx(
+        "mb-6 dark:bg-gray-950",
+        size < 5 ? "lg:mb-0" : "lg:mb-10"
+      )}
+    >
       {children}
     </div>
   );

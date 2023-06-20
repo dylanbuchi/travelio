@@ -45,18 +45,18 @@ export const Search = () => {
   return (
     <nav
       onClick={openModal}
-      className="cursor-pointer rounded-full border border-gray-200 py-2 shadow-sm transition hover:shadow-md md:w-auto"
+      className="cursor-pointer rounded-full border border-gray-200 py-2 shadow-sm transition hover:shadow-md dark:border-gray-600 dark:shadow-gray-600 md:w-auto"
     >
       <div className="flex items-center justify-between">
         <h2 className="px-6 text-sm font-semibold">{locationLabel}</h2>
-        <h2 className="hidden flex-1 border-x border-gray-200 px-6 text-center text-sm font-semibold sm:block">
+        <h2 className="hidden flex-1 border-x border-gray-200 px-6 text-center text-sm font-semibold dark:border-gray-300 sm:block">
           {typeof stayDuration === "number"
             ? `${stayDuration} day${stayDuration > 1 ? "s" : ""}`
             : `${stayDuration}`}
         </h2>
-        <div className="flex items-center gap-3 pl-6 pr-2 text-sm font-semibold text-gray-600">
+        <div className="flex items-center gap-3 pl-6 pr-2 text-sm font-semibold text-gray-600 dark:text-gray-400">
           <h2 className="hidden sm:block">{guestLabel}</h2>
-          <button className="rounded-full bg-teal-600 p-2 text-white">
+          <button className="rounded-full bg-teal-600 p-2 text-white dark:bg-teal-800 dark:text-gray-300">
             <BiSearch size={20} />
           </button>
         </div>

@@ -32,7 +32,7 @@ export const Input = ({
           aria-hidden="false"
           tabIndex={-1}
           size={25}
-          className="absolute left-2 top-5 text-neutral-700"
+          className="absolute left-2 top-5 text-neutral-700 dark:text-gray-300"
         />
       )}
       <input
@@ -42,10 +42,12 @@ export const Input = ({
         placeholder=" "
         type={type}
         className={clsx(
-          "peer w-full rounded-md border-2 bg-white p-4 pt-8 font-normal outline-none transition disabled:cursor-not-allowed disabled:opacity-70",
+          "peer w-full rounded-md border-2 bg-white p-4 pt-8 font-normal outline-none transition disabled:cursor-not-allowed disabled:opacity-70 dark:bg-gray-950 dark:text-gray-300",
           showDollarIcon ? "pl-9" : "pl-4",
           errors[id] ? "border-red-700" : "border-neutral-300",
-          errors[id] ? "focus:red-700" : "focus:border-black"
+          errors[id]
+            ? "focus:red-700"
+            : "focus:border-black dark:border-gray-300"
         )}
         aria-label={label}
         aria-required={isRequired}
@@ -54,9 +56,9 @@ export const Input = ({
       />
       <label
         className={clsx(
-          "text-md absolute top-6 z-10 origin-[0] -translate-y-3 text-base text-gray-800 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-75",
+          "text-md absolute top-6 z-10 origin-[0] -translate-y-3 text-base text-gray-800 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-75 dark:text-gray-300",
           showDollarIcon ? "left-9" : "left-4",
-          errors[id] ? "text-red-700" : "text-gray-800"
+          errors[id] ? "text-red-700" : "text-gray-800 dark:text-gray-300"
         )}
         htmlFor={id}
       >

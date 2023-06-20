@@ -52,8 +52,10 @@ export const CategoryItem = ({
       role="button"
       onClick={handleOnClick}
       className={clsx(
-        "h-full w-full cursor-pointer gap-1 p-2 transition hover:text-orange-700",
-        isSelected ? "text-orange-700" : "text-neutral-500",
+        "h-full w-full cursor-pointer gap-1 p-2 transition hover:text-orange-700 dark:text-gray-400 dark:hover:text-orange-700",
+        isSelected
+          ? "text-orange-700 dark:text-orange-700"
+          : "text-neutral-500 ",
         "flex flex-col items-center whitespace-nowrap",
         isSelected ? "underline underline-offset-4" : "no-underline"
       )}

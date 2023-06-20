@@ -10,6 +10,16 @@ body,
   height: 100%;
 }
 
+/* dark mode */
+
+.dark {
+  @apply bg-gray-950 text-gray-300;
+}
+
+.dark hr {
+  @apply border-gray-600;
+}
+
 /* react-date-range styles */
 
 .rdrDayDisabled {
@@ -22,4 +32,31 @@ body,
 
 .rdrMonth {
   @apply w-full !important;
+}
+
+/* react select styles */
+.my-react-select-container .my-react-select__control {
+  @apply border-2 border-neutral-300 bg-white hover:border-neutral-400 dark:border-neutral-700 dark:bg-gray-950 dark:hover:border-neutral-500;
+}
+
+.my-react-select-container .my-react-select__control--is-focused {
+  @apply border-neutral-500 shadow-none hover:border-neutral-500 dark:border-neutral-400 dark:hover:border-neutral-400;
+}
+
+.my-react-select-container .my-react-select__menu {
+  @apply border-2 border-neutral-300 bg-neutral-100 dark:border-neutral-600 dark:bg-gray-950;
+}
+
+.my-react-select-container .my-react-select__option {
+  @apply bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-gray-950 dark:text-neutral-200 dark:hover:bg-gray-800;
+}
+
+.my-react-select-container .my-react-select__indicator-separator {
+  @apply bg-neutral-400;
+}
+
+.my-react-select-container .my-react-select__input-container,
+.my-react-select-container .my-react-select__placeholder,
+.my-react-select-container .my-react-select__single-value {
+  @apply text-neutral-600 dark:text-neutral-200;
 }

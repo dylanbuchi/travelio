@@ -11,8 +11,10 @@ export const CountrySelector = ({ value, onChange }: CountrySelectorProps) => {
 
   return (
     <Select
+      className="my-react-select-container"
+      classNamePrefix="my-react-select"
       classNames={{
-        control: () => "p-1",
+        control: () => "p-1 ",
       }}
       theme={(theme) => ({
         ...theme,

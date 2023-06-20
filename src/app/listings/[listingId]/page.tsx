@@ -21,7 +21,7 @@ const ListingPage = async ({ params }: { params: ListingParams }) => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="container mx-auto flex justify-center pt-[3rem] sm:pt-[6rem]">
+      <div className="container mx-auto flex justify-center pt-[3rem] dark:bg-gray-950  sm:pt-[6rem]">
         <ListingCardExpanded
           listing={listing}
           user={listingOwner}

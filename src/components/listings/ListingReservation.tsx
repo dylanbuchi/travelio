@@ -47,7 +47,7 @@ export const ListingReservation = (props: ListingReservationProps) => {
       <div className="flex flex-col items-center">
         <div
           onClick={(event) => handleOnClick(event)}
-          className="relative w-full border-b border-neutral-500 p-2 text-center font-semibold hover:bg-neutral-100 hover:opacity-70"
+          className="relative w-full border-b border-neutral-500 p-2 text-center font-semibold hover:bg-neutral-100 hover:opacity-70 dark:hover:bg-gray-950"
         >
           ${price} <span className="font-normal"> per night</span>
           {!showCalendar && (

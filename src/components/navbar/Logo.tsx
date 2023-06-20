@@ -15,7 +15,7 @@ export const Logo = () => {
         height={55}
         width={55}
       />
-      <h1 className="text-lg font-bold xs:-ml-2">{APP_NAME}</h1>
+      <h1 className="text-lg font-bold dark:ml-[1rem] xs:-ml-2">{APP_NAME}</h1>
     </Link>
   );
 };

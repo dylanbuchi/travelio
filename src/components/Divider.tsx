@@ -8,7 +8,7 @@ interface DividerProps {
 }
 export const Divider = ({ text, smallText }: DividerProps) => {
   return (
-    <fieldset className="border-t border-slate-300">
+    <fieldset className="border-t border-slate-300 dark:border-gray-600">
       <legend
         className={clsx(
           "mx-auto px-4 italic",

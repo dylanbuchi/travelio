@@ -19,7 +19,7 @@ export const Counter = ({ title, subtitle, value, onChange }: CounterProps) => {
   const PlusButton = () => (
     <button
       onClick={addValue}
-      className="border-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-neutral-400 text-neutral-600 transition hover:opacity-70"
+      className="border-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-neutral-400 text-neutral-600 transition hover:opacity-70 dark:text-gray-400"
     >
       <AiOutlinePlus />
     </button>
@@ -28,7 +28,7 @@ export const Counter = ({ title, subtitle, value, onChange }: CounterProps) => {
   const MinusButton = () => (
     <button
       onClick={reduceValue}
-      className="border-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-neutral-400 text-neutral-600 transition hover:opacity-70"
+      className="border-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-neutral-400 text-neutral-600 transition hover:opacity-70 dark:text-gray-400"
     >
       <AiOutlineMinus />
     </button>
@@ -38,13 +38,15 @@ export const Counter = ({ title, subtitle, value, onChange }: CounterProps) => {
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col text-center sm:text-start">
         <h3 className="text-base font-medium">{title}</h3>
-        <h4 className="whitespace-nowrap text-sm font-light text-gray-600">
+        <h4 className="whitespace-nowrap text-sm font-light text-gray-600 dark:text-gray-400">
           {subtitle}
         </h4>
       </div>
       <div className="flex items-center justify-center sm:justify-start">
         <MinusButton />
-        <div className="text-base font-semibold text-neutral-900">{value}</div>
+        <div className="text-base font-semibold text-neutral-900 dark:text-gray-100">
+          {value}
+        </div>
         <PlusButton />
       </div>
     </div>

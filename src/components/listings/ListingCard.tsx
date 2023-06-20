@@ -89,7 +89,7 @@ export const ListingCard = (props: ListingCardProps) => {
         <div className="font-semibold">
           {location?.label}, {location?.region}
         </div>
-        <div className="-mt-2 text-sm font-normal text-neutral-600">
+        <div className="-mt-2 text-sm font-normal text-neutral-600 dark:text-gray-300">
           {reservationDate ||
             `${category[0]?.toUpperCase()}${category.slice(1)}`}
         </div>

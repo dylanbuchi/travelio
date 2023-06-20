@@ -84,10 +84,10 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center  overflow-auto bg-neutral-800/70  outline-none focus:outline-none">
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto  bg-neutral-800/70 outline-none  focus:outline-none dark:bg-gray-950">
         <section
           className={clsx(
-            "translate mx-auto flex h-fit w-[90%] flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none sm:h-fit sm:w-[50%] lg:h-[95%] max-height-813px:h-[90%] mobile-tablet-landscape:h-[90%] mobile-tablet-landscape:w-[70%]",
+            "translate mx-auto flex h-fit w-[90%] flex-col overflow-hidden rounded-lg border-0 bg-white shadow-lg outline-none duration-300 focus:outline-none dark:bg-gray-800 sm:h-fit sm:w-[50%] lg:h-[95%] max-height-813px:h-[90%] mobile-tablet-landscape:h-[90%] mobile-tablet-landscape:w-[70%]",
             showModal ? "translate-y-0" : "translate-y-full",
             showModal ? "opacity-100" : "opacity-0"
           )}
