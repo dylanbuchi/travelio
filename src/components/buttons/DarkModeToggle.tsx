@@ -1,10 +1,25 @@
 "use client";
 
-import { themeStore } from "@/store/theme.store";
+import { useEffect } from "react";
+import { loadFromLocalStorage } from "@/helpers/localstorage.helper";
+import { Theme, themeStore } from "@/store/theme.store";
 import { FiSun, FiMoon } from "react-icons/fi";
+import { THEME_KEY_LOCAL_STORAGE } from "@/constants/app.constants";
 
 export const DarkModeToggle = () => {
-  const { theme, toggleTheme } = themeStore();
+  const { theme, toggleTheme, setTheme } = themeStore();
+
+  useEffect(() => {
+    const storedTheme = loadFromLocalStorage(THEME_KEY_LOCAL_STORAGE) as Theme;
+    if (!storedTheme) return;
+
+    if (storedTheme === "dark") {
+      document?.body.classList.add("dark");
+      setTheme("dark");
+    } else {
+      document?.body.classList.remove("dark");
+    }
+  }, []);
 
   return (
     <button
