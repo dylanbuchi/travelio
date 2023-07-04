@@ -16,7 +16,7 @@ interface ButtonProps {
 const buttonClasses = {
   base: "relative w-full rounded-lg border-[2px] transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-70",
   outline: {
-    true: "dark:text-gray-300 dark:bg-gray-950 bg-white border-black text-black hover:bg-gray-100",
+    true: "dark:text-gray-300 dark:bg-gray-900 dark:border-gray-500 bg-white border-black text-black hover:bg-gray-100",
     false:
       "dark:bg-teal-950 bg-teal-600 border-teal-700 dark:border-teal-800 dark:text-gray-300 text-white",
   },
